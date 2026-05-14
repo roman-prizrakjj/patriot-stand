@@ -1721,6 +1721,8 @@
       font-weight: 700;
       letter-spacing: -4.69px;
       color: var(--red);
+      min-width: 520px;
+      font-variant-numeric: tabular-nums;
     }
 
     .pdeck-ai .pdeck-ai-stat .pdeck-value span {

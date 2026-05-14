@@ -10,12 +10,26 @@ interface PresentationDeckScreenProps {
 }
 
 const slideTransitionMs = 2600;
+const counterHoldMs = 1300;
+const counterDurationMs = 2200;
+
+function easeOutQuad(progress: number) {
+  return 1 - (1 - progress) * (1 - progress);
+}
+
+function formatEventsValue(value: number, language: Language) {
+  return language === 'en'
+    ? value.toLocaleString('en-US')
+    : value.toLocaleString('ru-RU');
+}
 
 export function PresentationDeckScreen({ block, language }: PresentationDeckScreenProps) {
   const rootRef = useRef<HTMLDivElement>(null);
   const previousSlideRef = useRef<number | null>(null);
   const transitionTimerRef = useRef<number | null>(null);
   const frameRef = useRef<number | null>(null);
+  const counterFrameRef = useRef<number | null>(null);
+  const counterTimerRef = useRef<number | null>(null);
 
   useLayoutEffect(() => {
     const root = rootRef.current;
@@ -71,6 +85,16 @@ export function PresentationDeckScreen({ block, language }: PresentationDeckScre
     const root = rootRef.current;
     if (!root) return;
 
+    if (counterFrameRef.current !== null) {
+      window.cancelAnimationFrame(counterFrameRef.current);
+      counterFrameRef.current = null;
+    }
+
+    if (counterTimerRef.current !== null) {
+      window.clearTimeout(counterTimerRef.current);
+      counterTimerRef.current = null;
+    }
+
     if (transitionTimerRef.current !== null) {
       window.clearTimeout(transitionTimerRef.current);
       transitionTimerRef.current = null;
@@ -117,6 +141,34 @@ export function PresentationDeckScreen({ block, language }: PresentationDeckScre
       frameRef.current = null;
     });
 
+    if (next === 6) {
+      const valueNode = to.querySelector<HTMLElement>('[data-layer="ai.metric.events"] .pdeck-value');
+
+      if (valueNode) {
+        valueNode.innerHTML = `${formatEventsValue(0, language)} <span>+</span>`;
+
+        counterTimerRef.current = window.setTimeout(() => {
+          const startedAt = performance.now();
+
+          const tick = (now: number) => {
+            const progress = Math.min((now - startedAt) / counterDurationMs, 1);
+            const value = Math.round(easeOutQuad(progress) * 2000);
+            valueNode.innerHTML = `${formatEventsValue(value, language)} <span>+</span>`;
+
+            if (progress < 1) {
+              counterFrameRef.current = window.requestAnimationFrame(tick);
+              return;
+            }
+
+            counterFrameRef.current = null;
+          };
+
+          counterTimerRef.current = null;
+          counterFrameRef.current = window.requestAnimationFrame(tick);
+        }, counterHoldMs);
+      }
+    }
+
     transitionTimerRef.current = window.setTimeout(() => {
       to.classList.remove('pdeck-is-entering', 'pdeck-has-entered');
       if (from && from !== to) {
@@ -137,8 +189,18 @@ export function PresentationDeckScreen({ block, language }: PresentationDeckScre
         window.cancelAnimationFrame(frameRef.current);
         frameRef.current = null;
       }
+
+      if (counterFrameRef.current !== null) {
+        window.cancelAnimationFrame(counterFrameRef.current);
+        counterFrameRef.current = null;
+      }
+
+      if (counterTimerRef.current !== null) {
+        window.clearTimeout(counterTimerRef.current);
+        counterTimerRef.current = null;
+      }
     };
-  }, [block.slideNumber]);
+  }, [block.slideNumber, language]);
 
   return (
     <div
