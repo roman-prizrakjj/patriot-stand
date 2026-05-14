@@ -990,6 +990,7 @@
       border: 1.699px solid rgba(255,255,255,.22);
       background: radial-gradient(circle, #1a1a1f 0%, #0d0d10 40%, #070708 60%, #000 80%);
       box-shadow: 0 0 136px rgba(244,45,45,.18), 0 0 0 1.699px rgba(244,45,45,.20);
+      will-change: transform, box-shadow;
     }
 
     .pdeck-ecosystem .pdeck-core::before,
@@ -1003,11 +1004,15 @@
     .pdeck-ecosystem .pdeck-core::before {
       inset: -40px;
       border: 1.699px dashed rgba(244,45,45,.40);
+      animation: ecosystemCoreRingPulse 3.8s ease-in-out infinite;
     }
 
     .pdeck-ecosystem .pdeck-core::after {
       inset: -100px;
       border: 1.699px solid rgba(255,255,255,.05);
+      box-shadow: 0 0 88px rgba(244,45,45,.08);
+      animation: ecosystemCoreOuterPulse 3.8s ease-in-out infinite;
+      animation-delay: .45s;
     }
 
     .pdeck-ecosystem .pdeck-core .pdeck-label {
@@ -2055,6 +2060,45 @@
       }
     }
 
+    @keyframes ecosystemCorePulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 136px rgba(244,45,45,.18), 0 0 0 1.699px rgba(244,45,45,.20);
+      }
+      50% {
+        transform: scale(1.018);
+        box-shadow: 0 0 170px rgba(244,45,45,.28), 0 0 0 1.699px rgba(244,45,45,.32);
+      }
+    }
+
+    @keyframes ecosystemCoreRingPulse {
+      0%, 100% {
+        opacity: .62;
+        transform: scale(.985);
+        border-color: rgba(244,45,45,.34);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.035);
+        border-color: rgba(244,45,45,.66);
+      }
+    }
+
+    @keyframes ecosystemCoreOuterPulse {
+      0%, 100% {
+        opacity: .42;
+        transform: scale(.98);
+        border-color: rgba(255,255,255,.05);
+        box-shadow: 0 0 72px rgba(244,45,45,.06);
+      }
+      50% {
+        opacity: .78;
+        transform: scale(1.045);
+        border-color: rgba(244,45,45,.18);
+        box-shadow: 0 0 120px rgba(244,45,45,.16);
+      }
+    }
+
     @keyframes lineDraw {
       from {
         opacity: 0;
@@ -2113,6 +2157,10 @@
     .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-core {
       animation: corePopIn 720ms var(--ease) both;
       animation-delay: 180ms;
+    }
+
+    .pdeck-slide.pdeck-ecosystem.pdeck-is-active .pdeck-core {
+      animation: ecosystemCorePulse 3.8s ease-in-out infinite;
     }
 
     .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line {
