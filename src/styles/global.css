@@ -218,10 +218,14 @@ button {
 }
 
 .bottom-menu--start {
-  right: 18vw;
-  top: 54%;
-  transform: translateY(-50%) scale(var(--figma-menu-scale));
-  transform-origin: center;
+  display: block;
+  width: max-content;
+  height: max-content;
+  right: clamp(24px, 3vw, 96px);
+  bottom: clamp(24px, 5vh, 112px);
+  transform: scale(var(--figma-menu-scale));
+  transform-origin: bottom right;
+  animation: figma-play-appear 320ms cubic-bezier(.22, 1, .36, 1) both;
 }
 
 .bottom-menu--full {
@@ -234,6 +238,12 @@ button {
   height: 60px;
   transform: scale(var(--figma-menu-scale));
   transform-origin: bottom right;
+  animation: figma-menu-appear 360ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.bottom-menu--leaving {
+  pointer-events: none;
+  animation: figma-menu-leave 280ms cubic-bezier(.4, 0, 1, 1) both;
 }
 
 .figma-play-button,
@@ -364,6 +374,48 @@ button {
 
 .figma-play-button:hover {
   background: rgb(244 45 45 / 0.5);
+}
+
+@keyframes figma-menu-appear {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(var(--figma-menu-scale));
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(var(--figma-menu-scale));
+    filter: blur(0);
+  }
+}
+
+@keyframes figma-menu-leave {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(var(--figma-menu-scale));
+    filter: blur(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(14px) scale(var(--figma-menu-scale));
+    filter: blur(8px);
+  }
+}
+
+@keyframes figma-play-appear {
+  from {
+    opacity: 0;
+    transform: translate(10px, 10px) scale(calc(var(--figma-menu-scale) * .92));
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(var(--figma-menu-scale));
+    filter: blur(0);
+  }
 }
 
 .language-stinger {
