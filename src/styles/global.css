@@ -211,99 +211,159 @@ button {
 }
 
 .bottom-menu {
-  position: absolute;
-  z-index: 20;
-  left: 28px;
-  bottom: 28px;
-  width: auto;
-  min-height: 0;
-  display: inline-flex;
-  gap: 12px;
-  align-items: center;
-  padding: 8px;
-  border: 1px solid rgb(255 255 255 / 0.14);
-  border-radius: 12px;
-  background: rgb(4 7 10 / 0.66);
-  backdrop-filter: blur(22px);
-  box-shadow: 0 22px 70px rgb(0 0 0 / 0.36);
+  --figma-menu-scale: clamp(0.74, calc(100vw / 2260px), 1.7);
+  position: fixed;
+  z-index: 1000;
+  color: #ffffff;
 }
 
-.menu-cluster,
-.language-switch {
+.bottom-menu--start {
+  right: 18vw;
+  top: 54%;
+  transform: translateY(-50%) scale(var(--figma-menu-scale));
+  transform-origin: center;
+}
+
+.bottom-menu--full {
+  right: 28px;
+  bottom: 14px;
   display: flex;
+  gap: 20px;
   align-items: center;
-  gap: 10px;
+  justify-content: flex-end;
+  height: 60px;
+  transform: scale(var(--figma-menu-scale));
+  transform-origin: bottom right;
 }
 
-.control-button,
-.language-switch button,
-.menu-strip button {
-  height: 58px;
-  border: 1px solid rgb(255 255 255 / 0.16);
-  border-radius: 8px;
-  color: #f4f7fb;
-  background: rgb(255 255 255 / 0.08);
+.figma-play-button,
+.figma-menu-group {
+  border: 1px solid rgb(255 255 255 / 0.1);
+  backdrop-filter: blur(25px);
 }
 
-.control-button {
-  width: 58px;
+.figma-play-button {
+  width: 116px;
+  height: 116px;
   display: grid;
   place-items: center;
-}
-
-.control-button--primary {
-  border-color: rgb(103 245 220 / 0.58);
-  color: #041012;
-  background: #67f5dc;
-}
-
-.control-button--danger {
-  border-color: rgb(255 73 102 / 0.62);
+  padding: 20px;
+  border-width: 2px;
+  border-color: #f42d2d;
+  border-radius: 30px;
   color: #ffffff;
-  background: rgb(255 73 102 / 0.22);
+  background: rgb(244 45 45 / 0.4);
+  box-shadow: 0 26px 80px rgb(244 45 45 / 0.22);
 }
 
-.menu-strip {
-  position: absolute;
-  left: 0;
-  bottom: calc(100% + 10px);
-  max-width: min(1280px, calc(100vw - 72px));
+.figma-play-button span {
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border-radius: 15px;
+  background: #f42d2d;
+  backdrop-filter: blur(50px);
+}
+
+.figma-menu-group {
   display: flex;
-  gap: 12px;
-  min-width: 0;
-  overflow-x: auto;
-  padding: 10px;
-  border: 1px solid rgb(255 255 255 / 0.14);
-  border-radius: 12px;
-  background: rgb(4 7 10 / 0.72);
-  backdrop-filter: blur(22px);
-  box-shadow: 0 22px 70px rgb(0 0 0 / 0.36);
+  align-items: center;
+  height: 60px;
+  padding: 8px;
+  border-radius: 18px;
+  background: rgb(34 34 34 / 0.4);
 }
 
-.menu-strip button {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex: 0 0 auto;
-  padding: 0 22px;
-  max-width: 360px;
-  font-size: 22px;
+.figma-menu-group--system {
+  gap: 16px;
+}
+
+.figma-menu-group--pages {
+  gap: 8px;
+}
+
+.figma-menu-button,
+.figma-menu-text-button,
+.figma-page-list button,
+.figma-menu-group--language button {
+  height: 45px;
+  border: 0;
+  color: #ffffff;
+  background: transparent;
+  backdrop-filter: blur(50px);
+}
+
+.figma-menu-button {
+  width: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.12);
+}
+
+.figma-menu-label {
+  width: 109px;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
   white-space: nowrap;
 }
 
-.language-switch {
-  color: #9fb0bd;
+.figma-page-list {
+  display: flex;
+  align-items: center;
 }
 
-.language-switch button {
-  width: 64px;
-  font-size: 18px;
+.figma-page-list button,
+.figma-menu-group--language button {
+  min-width: 44px;
+  padding: 0 8px;
+  border-radius: 200px;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
 }
 
-.language-switch button.active {
-  border-color: rgb(103 245 220 / 0.62);
-  color: #67f5dc;
-  background: rgb(103 245 220 / 0.12);
+.figma-page-list button.active,
+.figma-menu-group--language button.active {
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.12);
+}
+
+.figma-menu-text-button {
+  min-width: 226px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 20px;
+  line-height: 32px;
+  white-space: nowrap;
+}
+
+.figma-menu-group--language {
+  align-items: flex-start;
+}
+
+.figma-menu-group--language button {
+  min-width: 58px;
+  padding: 0 16px;
+}
+
+.figma-menu-group--language button:nth-child(2) {
+  min-width: 72px;
+}
+
+.figma-play-button:hover,
+.figma-menu-button:hover,
+.figma-menu-text-button:hover,
+.figma-page-list button:hover,
+.figma-menu-group--language button:hover {
+  background: rgb(255 255 255 / 0.18);
+}
+
+.figma-play-button:hover {
+  background: rgb(244 45 45 / 0.5);
 }
 
 .language-stinger {

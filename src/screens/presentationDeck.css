@@ -428,6 +428,10 @@
       display: none;
     }
 
+    .pdeck-community .pdeck-footer {
+      bottom: 165px;
+    }
+
     .pdeck-community .pdeck-footer [data-layer="community.footer.note"] {
       font-size: 33.982px;
       line-height: 41px;

@@ -1,5 +1,6 @@
-import { ChevronLeft, ChevronRight, ExternalLink, Languages, Play, Square } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play, RotateCcw, Square } from 'lucide-react';
 import type { useScenarioEngine } from '../app/useScenarioEngine';
+import type { ScenarioBlock } from '../core/types';
 import type { ScenarioConfig } from '../core/types';
 
 type ScenarioEngine = ReturnType<typeof useScenarioEngine>;
@@ -11,8 +12,10 @@ interface BottomMenuProps {
 
 export function BottomMenu({ config, engine }: BottomMenuProps) {
   const {
+    currentBlock,
     goNext,
     goPrevious,
+    goToStart,
     jumpToBlock,
     language,
     mode,
@@ -21,61 +24,86 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
     switchLanguage,
   } = engine;
 
-  const canUseExtendedMenu = false;
-
   async function launchPtVision() {
     await window.patriotHost?.launchExternal(config.externalTargets.ptVision);
   }
 
+  function getBlockLabel(block: ScenarioBlock, index: number) {
+    if (block.type === 'presentation') {
+      return String(block.slideNumber);
+    }
+
+    const map: Record<string, string> = {
+      'risk-oil': 'R1',
+      'killchain-oil': 'C1',
+      'risk-intersec': 'R2',
+      'killchain-intersec': 'C2',
+    };
+
+    return map[block.id] ?? String(index + 1);
+  }
+
+  if (mode === 'start') {
+    return (
+      <nav className="bottom-menu bottom-menu--start" aria-label="Start scenario">
+        <button className="figma-play-button" type="button" onClick={play} aria-label="Play">
+          <span>
+            <Play size={44} strokeWidth={2.4} />
+          </span>
+        </button>
+      </nav>
+    );
+  }
+
   return (
-    <nav className={`bottom-menu bottom-menu--${mode}`}>
-      <div className="menu-cluster">
-        {mode === 'start' && (
-          <button className="control-button control-button--primary" type="button" onClick={play} aria-label="Play">
-            <Play size={34} />
-          </button>
-        )}
-
-        {mode !== 'start' && (
-          <>
-            <button className="control-button" type="button" onClick={goPrevious} aria-label="Previous">
-              <ChevronLeft size={34} />
-            </button>
-
-            {mode === 'autoplay' ? (
-              <button className="control-button control-button--danger" type="button" onClick={stop} aria-label="Stop">
-                <Square size={30} />
-              </button>
-            ) : (
-              <button className="control-button control-button--primary" type="button" onClick={play} aria-label="Play">
-                <Play size={34} />
-              </button>
-            )}
-
-            <button className="control-button" type="button" onClick={goNext} aria-label="Next">
-              <ChevronRight size={34} />
-            </button>
-          </>
-        )}
+    <nav className={`bottom-menu bottom-menu--full bottom-menu--${mode}`} aria-label="Scenario controls">
+      <div className="figma-menu-group figma-menu-group--system">
+        <button className="figma-menu-button" type="button" onClick={stop} aria-label="Stop">
+          <Square size={18} strokeWidth={2.4} />
+        </button>
+        <button className="figma-menu-button" type="button" onClick={goToStart} aria-label="Restart">
+          <RotateCcw size={18} strokeWidth={2.4} />
+        </button>
       </div>
 
-      {canUseExtendedMenu && (
-        <div className="menu-strip" aria-label="Scenario navigation">
-          {config.blocks.map((block, index) => (
-            <button key={block.id} type="button" onClick={() => jumpToBlock(index)}>
-              {block.title[language]}
-            </button>
-          ))}
+      <div className="figma-menu-group figma-menu-group--pages">
+        <span className="figma-menu-label">Страница</span>
+        <button className="figma-menu-button" type="button" onClick={goPrevious} aria-label="Previous">
+          <ChevronLeft size={18} strokeWidth={2.4} />
+        </button>
 
-          <button type="button" onClick={launchPtVision}>
-            <ExternalLink size={20} />
-            PT Vision
-          </button>
+        <div className="figma-page-list" aria-label="Scenario navigation">
+          {config.blocks.map((block, index) => {
+            const label = getBlockLabel(block, index);
+            const isActive = currentBlock?.id === block.id;
+
+            return (
+              <button
+                className={isActive ? 'active' : ''}
+                key={block.id}
+                type="button"
+                onClick={() => jumpToBlock(index)}
+                aria-label={block.title[language]}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {label}
+              </button>
+            );
+          })}
         </div>
-      )}
 
-      <div className="language-switch" aria-label="Language">
-        <Languages size={24} />
+        <button className="figma-menu-button" type="button" onClick={goNext} aria-label="Next">
+          <ChevronRight size={18} strokeWidth={2.4} />
+        </button>
+      </div>
+
+      <div className="figma-menu-group figma-menu-group--pt">
+        <button className="figma-menu-text-button" type="button" onClick={launchPtVision}>
+          PT Vision Standoff 15
+        </button>
+      </div>
+
+      <div className="figma-menu-group figma-menu-group--language" aria-label="Language">
         {config.languages.map((item) => (
           <button
             className={item === language ? 'active' : ''}
@@ -83,7 +111,7 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
             type="button"
             onClick={() => switchLanguage(item)}
           >
-            {item.toUpperCase()}
+            {item === 'en' ? 'ENG' : item.toUpperCase()}
           </button>
         ))}
       </div>
