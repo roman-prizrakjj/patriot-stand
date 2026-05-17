@@ -12,6 +12,8 @@ export async function pressStreamDeckButton(language: Language, button: number) 
   const url = `${streamDeckBaseUrl}/api/location/1/${languageSlot}/${button}/press`;
 
   try {
+    console.info(`Stream Deck trigger sending: ${url}`);
+
     const response = await fetch(url, {
       method: 'POST',
       keepalive: true,
@@ -19,7 +21,10 @@ export async function pressStreamDeckButton(language: Language, button: number) 
 
     if (!response.ok) {
       console.warn(`Stream Deck trigger failed: ${response.status} ${url}`);
+      return;
     }
+
+    console.info(`Stream Deck trigger sent: ${response.status} ${url}`);
   } catch (error) {
     console.warn(`Stream Deck trigger unavailable: ${url}`, error);
   }
