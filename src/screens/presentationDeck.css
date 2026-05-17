@@ -52,9 +52,8 @@
       display: block;
       overflow: hidden;
       background:
-        radial-gradient(circle at 16% 86%, rgba(255, 41, 49, .22), transparent 25%),
-        radial-gradient(circle at 91% 11%, rgba(20, 103, 255, .25), transparent 27%),
-        linear-gradient(120deg, #080809 0%, #020203 55%, #05070d 100%);
+        radial-gradient(circle at 91% 11%, rgba(20, 103, 255, .10), transparent 28%),
+        linear-gradient(120deg, #050506 0%, #020203 58%, #04060b 100%);
       visibility: hidden;
       opacity: 0;
       pointer-events: none;
@@ -351,14 +350,17 @@
       width: 3227px;
       height: 2198px;
       object-fit: fill;
-      opacity: 1;
+      opacity: .9;
+      filter: brightness(.72) contrast(.92) blur(1.6px);
+      transform: translateZ(0);
+      will-change: opacity, filter, transform;
     }
 
     .pdeck-cover-tint {
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at -3% -5%, rgba(244,45,45,.24), transparent 48%),
+        radial-gradient(circle at -3% -5%, rgba(244,45,45,.10), transparent 48%),
         radial-gradient(circle at 87% 75%, rgba(25,93,249,.20), transparent 39%),
         linear-gradient(90deg, rgba(0,0,0,.94) 0%, rgba(0,0,0,.56) 48%, rgba(0,0,0,.16) 100%);
     }
@@ -1842,13 +1844,13 @@
     }
 
     .pdeck-slide.pdeck-is-entering {
-      animation: slideReveal 900ms var(--ease) both;
+      animation: slideReveal 1450ms var(--ease) both;
     }
 
     .pdeck-slide.pdeck-is-entering .pdeck-anim {
       transition: none;
-      animation: slideReveal 760ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 120ms);
+      animation: slideReveal 1150ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 145ms);
     }
 
     .pdeck-slide.pdeck-is-entering .pdeck-anim[data-anim="fade"] {
@@ -1870,24 +1872,32 @@
     }
 
     @keyframes coverMapFadeOut {
-      from { opacity: 1; transform: scale(1); }
-      to { opacity: 0; transform: scale(1.035); }
+      from { opacity: .9; transform: scale(1); filter: brightness(.72) contrast(.92) blur(1.6px); }
+      to { opacity: 0; transform: scale(1.035); filter: brightness(.48) contrast(.88) blur(18px); }
+    }
+
+    @keyframes coverTintFadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
     }
 
     .pdeck-cover.pdeck-is-leaving .pdeck-header,
     .pdeck-cover.pdeck-is-leaving .pdeck-eyebrow,
     .pdeck-cover.pdeck-is-leaving .pdeck-cover-title,
     .pdeck-cover.pdeck-is-leaving .pdeck-cover-copy {
-      animation: coverLeaveUp 900ms var(--ease) both;
+      animation: coverLeaveUp 1300ms var(--ease) both;
     }
 
     .pdeck-cover.pdeck-is-leaving .pdeck-cover-stats {
-      animation: coverLeaveDown 900ms var(--ease) both;
+      animation: coverLeaveDown 1300ms var(--ease) both;
     }
 
-    .pdeck-cover.pdeck-is-leaving .pdeck-cover-map,
+    .pdeck-cover.pdeck-is-leaving .pdeck-cover-map {
+      animation: coverMapFadeOut 1600ms var(--ease) both;
+    }
+
     .pdeck-cover.pdeck-is-leaving .pdeck-cover-tint {
-      animation: coverMapFadeOut 950ms var(--ease) both;
+      animation: coverTintFadeOut 1600ms var(--ease) both;
     }
 
     @keyframes radarSqueezeIn {
@@ -1951,7 +1961,7 @@
     .pdeck-radar .pdeck-d10 { --origin-x: 73px; --origin-y: -359px; --orbit-time: 55s; --orbit-dir: reverse; }
 
     .pdeck-slide.pdeck-community.pdeck-is-entering .pdeck-radar {
-      animation: radarSqueezeIn 950ms var(--ease) both;
+      animation: radarSqueezeIn 1350ms var(--ease) both;
     }
 
     .pdeck-community.pdeck-is-active .pdeck-radar .pdeck-arc,
@@ -1968,27 +1978,27 @@
 
     .pdeck-community.pdeck-is-entering .pdeck-product-stat,
     .pdeck-community.pdeck-is-entering .pdeck-footer .pdeck-anim {
-      animation: slideReveal 760ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 90ms);
+      animation: slideReveal 1100ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 115ms);
     }
 
     .pdeck-community.pdeck-is-entering .pdeck-radar-stat {
-      animation: slideReveal 760ms var(--ease) 720ms both;
+      animation: slideReveal 1100ms var(--ease) 900ms both;
     }
 
     .pdeck-community.pdeck-is-leaving .pdeck-radar {
-      animation: radarGatherOut 950ms var(--ease) both;
+      animation: radarGatherOut 1250ms var(--ease) both;
     }
 
     .pdeck-community.pdeck-is-leaving .pdeck-header,
     .pdeck-community.pdeck-is-leaving .pdeck-community-title,
     .pdeck-community.pdeck-is-leaving .pdeck-community-copy {
-      animation: coverLeaveUp 760ms var(--ease) both;
+      animation: coverLeaveUp 1100ms var(--ease) both;
     }
 
     .pdeck-community.pdeck-is-leaving .pdeck-product-stat,
     .pdeck-community.pdeck-is-leaving .pdeck-footer .pdeck-anim {
-      animation: fadeDropOut 760ms var(--ease) both;
+      animation: fadeDropOut 1050ms var(--ease) both;
     }
 
     @keyframes marketCardIn {
@@ -2016,32 +2026,32 @@
     }
 
     .pdeck-market.pdeck-is-entering .pdeck-header-row .pdeck-anim {
-      animation: slideReveal 760ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 110ms);
+      animation: slideReveal 1120ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 125ms);
     }
 
     .pdeck-market.pdeck-is-entering .pdeck-request-card {
-      animation: marketCardIn 780ms var(--ease) both;
-      animation-delay: calc((var(--d, 0) + 1) * 120ms);
+      animation: marketCardIn 1160ms var(--ease) both;
+      animation-delay: calc((var(--d, 0) + 1) * 135ms);
     }
 
-    .pdeck-market.pdeck-is-entering .pdeck-request-card:nth-child(1) { animation-delay: 620ms; }
-    .pdeck-market.pdeck-is-entering .pdeck-request-card:nth-child(2) { animation-delay: 820ms; }
-    .pdeck-market.pdeck-is-entering .pdeck-request-card:nth-child(3) { animation-delay: 1020ms; }
+    .pdeck-market.pdeck-is-entering .pdeck-request-card:nth-child(1) { animation-delay: 720ms; }
+    .pdeck-market.pdeck-is-entering .pdeck-request-card:nth-child(2) { animation-delay: 980ms; }
+    .pdeck-market.pdeck-is-entering .pdeck-request-card:nth-child(3) { animation-delay: 1240ms; }
 
     .pdeck-market.pdeck-is-entering .pdeck-footer .pdeck-anim {
-      animation: slideReveal 680ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 95ms);
+      animation: slideReveal 980ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 105ms);
     }
 
     .pdeck-market.pdeck-is-leaving .pdeck-header-row,
     .pdeck-market.pdeck-is-leaving .pdeck-footer {
-      animation: coverLeaveUp 680ms var(--ease) both;
+      animation: coverLeaveUp 980ms var(--ease) both;
     }
 
     .pdeck-market.pdeck-is-leaving .pdeck-request-card {
       transform-origin: center center;
-      animation-duration: 960ms;
+      animation-duration: 1280ms;
       animation-timing-function: var(--ease);
       animation-fill-mode: both;
     }
@@ -2157,7 +2167,7 @@
     }
 
     .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-core {
-      animation: corePopIn 720ms var(--ease) both;
+      animation: corePopIn 1060ms var(--ease) both;
       animation-delay: 180ms;
     }
 
@@ -2166,34 +2176,34 @@
     }
 
     .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line {
-      animation: lineDraw 620ms var(--ease) both;
+      animation: lineDraw 940ms var(--ease) both;
     }
 
-    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l1 { animation-delay: 720ms; }
-    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l2 { animation-delay: 840ms; }
-    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l3 { animation-delay: 960ms; }
-    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l4 { animation-delay: 1080ms; }
-    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l5 { animation-delay: 1200ms; }
+    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l1 { animation-delay: 820ms; }
+    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l2 { animation-delay: 980ms; }
+    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l3 { animation-delay: 1140ms; }
+    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l4 { animation-delay: 1300ms; }
+    .pdeck-slide.pdeck-ecosystem.pdeck-is-entering .pdeck-map-line.pdeck-l5 { animation-delay: 1460ms; }
 
     .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card {
-      animation: nodeReveal 680ms var(--ease) both;
+      animation: nodeReveal 980ms var(--ease) both;
     }
 
-    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n1 { animation-delay: 980ms; }
-    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n2 { animation-delay: 1120ms; }
-    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n3 { animation-delay: 1260ms; }
-    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n4 { animation-delay: 1400ms; }
-    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n5 { animation-delay: 1540ms; }
+    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n1 { animation-delay: 1120ms; }
+    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n2 { animation-delay: 1300ms; }
+    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n3 { animation-delay: 1480ms; }
+    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n4 { animation-delay: 1660ms; }
+    .pdeck-ecosystem.pdeck-is-entering .pdeck-node-card.pdeck-n5 { animation-delay: 1840ms; }
 
     .pdeck-ecosystem.pdeck-is-leaving .pdeck-ecosystem-map {
       transform-origin: 50% 58%;
-      animation: ecosystemZoomIntoCore 980ms var(--ease) both;
+      animation: ecosystemZoomIntoCore 1360ms var(--ease) both;
     }
 
     .pdeck-ecosystem.pdeck-is-leaving .pdeck-header,
     .pdeck-ecosystem.pdeck-is-leaving .pdeck-header-row,
     .pdeck-ecosystem.pdeck-is-leaving .pdeck-footer {
-      animation: coverMapFadeOut 700ms var(--ease) both;
+      animation: coverMapFadeOut 1040ms var(--ease) both;
     }
 
     @keyframes scenarioReveal {
@@ -2234,30 +2244,30 @@
     }
 
     .pdeck-application.pdeck-is-entering .pdeck-header-row .pdeck-anim {
-      animation: slideReveal 760ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 95ms);
+      animation: slideReveal 1120ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 110ms);
     }
 
     .pdeck-application.pdeck-is-entering .pdeck-scenario-card {
       transform-origin: center center;
-      animation: scenarioReveal 1050ms var(--ease) both;
-      animation-delay: 520ms;
+      animation: scenarioReveal 1380ms var(--ease) both;
+      animation-delay: 620ms;
     }
 
     .pdeck-application.pdeck-is-entering .pdeck-footer .pdeck-anim {
-      animation: slideReveal 680ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 90ms);
+      animation: slideReveal 980ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 100ms);
     }
 
     .pdeck-application.pdeck-is-leaving .pdeck-header,
     .pdeck-application.pdeck-is-leaving .pdeck-header-row,
     .pdeck-application.pdeck-is-leaving .pdeck-footer {
-      animation: coverMapFadeOut 700ms var(--ease) both;
+      animation: coverMapFadeOut 1040ms var(--ease) both;
     }
 
     .pdeck-application.pdeck-is-leaving .pdeck-scenario-card {
       transform-origin: center center;
-      animation-duration: 920ms;
+      animation-duration: 1220ms;
       animation-timing-function: var(--ease);
       animation-fill-mode: both;
     }
@@ -2300,58 +2310,58 @@
     }
 
     .pdeck-ai.pdeck-is-entering .pdeck-header-row .pdeck-anim {
-      animation: slideReveal 760ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 95ms);
+      animation: slideReveal 1120ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 110ms);
     }
 
     .pdeck-ai.pdeck-is-entering .pdeck-pipeline {
-      animation: aiPanelIn 650ms var(--ease) both;
-      animation-delay: 430ms;
+      animation: aiPanelIn 980ms var(--ease) both;
+      animation-delay: 520ms;
     }
 
     .pdeck-ai.pdeck-is-entering .pdeck-pipeline-title {
-      animation: slideReveal 560ms var(--ease) both;
-      animation-delay: 560ms;
+      animation: slideReveal 860ms var(--ease) both;
+      animation-delay: 680ms;
     }
 
     .pdeck-ai.pdeck-is-entering .pdeck-step {
-      animation: aiStepIn 580ms var(--ease) both;
+      animation: aiStepIn 880ms var(--ease) both;
     }
 
-    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.source"] { animation-delay: 760ms; }
-    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.data"] { animation-delay: 980ms; }
-    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.model"] { animation-delay: 1200ms; }
-    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.product"] { animation-delay: 1420ms; }
+    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.source"] { animation-delay: 900ms; }
+    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.data"] { animation-delay: 1180ms; }
+    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.model"] { animation-delay: 1460ms; }
+    .pdeck-ai.pdeck-is-entering [data-layer="ai.step.product"] { animation-delay: 1740ms; }
 
     .pdeck-ai.pdeck-is-entering .pdeck-pipe-line {
       transform-origin: left center;
-      animation: aiPipeIn 420ms var(--ease) both;
+      animation: aiPipeIn 680ms var(--ease) both;
     }
 
-    .pdeck-ai.pdeck-is-entering [data-layer="ai.pipe.1"] { animation-delay: 900ms; }
-    .pdeck-ai.pdeck-is-entering [data-layer="ai.pipe.2"] { animation-delay: 1120ms; }
-    .pdeck-ai.pdeck-is-entering [data-layer="ai.pipe.3"] { animation-delay: 1340ms; }
+    .pdeck-ai.pdeck-is-entering [data-layer="ai.pipe.1"] { animation-delay: 1060ms; }
+    .pdeck-ai.pdeck-is-entering [data-layer="ai.pipe.2"] { animation-delay: 1340ms; }
+    .pdeck-ai.pdeck-is-entering [data-layer="ai.pipe.3"] { animation-delay: 1620ms; }
 
     .pdeck-ai.pdeck-is-entering .pdeck-ai-stat {
-      animation: aiPanelIn 620ms var(--ease) both;
-      animation-delay: 1640ms;
+      animation: aiPanelIn 960ms var(--ease) both;
+      animation-delay: 1980ms;
     }
 
     .pdeck-ai.pdeck-is-entering .pdeck-ai-products {
-      animation: aiPanelIn 620ms var(--ease) both;
-      animation-delay: 1820ms;
+      animation: aiPanelIn 960ms var(--ease) both;
+      animation-delay: 2200ms;
     }
 
     .pdeck-ai.pdeck-is-entering .pdeck-footer .pdeck-anim {
-      animation: slideReveal 620ms var(--ease) both;
-      animation-delay: calc(var(--d, 0) * 90ms);
+      animation: slideReveal 920ms var(--ease) both;
+      animation-delay: calc(var(--d, 0) * 100ms);
     }
 
     .pdeck-ai.pdeck-is-leaving .pdeck-header,
     .pdeck-ai.pdeck-is-leaving .pdeck-header-row,
     .pdeck-ai.pdeck-is-leaving .pdeck-ai-layout,
     .pdeck-ai.pdeck-is-leaving .pdeck-footer {
-      animation: aiFadeOut 820ms ease both;
+      animation: aiFadeOut 1120ms ease both;
     }
 
     @keyframes transitionChromeOut {
@@ -2360,9 +2370,13 @@
     }
 
     .pdeck-slide.pdeck-is-leaving > .pdeck-header,
-    .pdeck-slide.pdeck-is-leaving > .pdeck-footer,
+    .pdeck-slide.pdeck-is-leaving > .pdeck-footer {
+      animation: transitionChromeOut 900ms ease both !important;
+    }
+
     .pdeck-slide.pdeck-is-leaving > .pdeck-glow {
-      animation: transitionChromeOut 220ms ease both !important;
+      opacity: 0 !important;
+      animation: none !important;
     }
 
     .pdeck-slide.pdeck-is-leaving::after {

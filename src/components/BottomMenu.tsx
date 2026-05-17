@@ -1,5 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Play, RotateCcw, Square } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { useScenarioEngine } from '../app/useScenarioEngine';
 import type { ScenarioBlock } from '../core/types';
 import type { ScenarioConfig } from '../core/types';
@@ -12,18 +11,13 @@ interface BottomMenuProps {
 }
 
 export function BottomMenu({ config, engine }: BottomMenuProps) {
-  const [isResetting, setIsResetting] = useState(false);
-  const resetTimerRef = useRef<number | null>(null);
   const {
     currentBlock,
     goNext,
     goPrevious,
-    goToStart,
     jumpToBlock,
     language,
     mode,
-    play,
-    stop,
     switchLanguage,
   } = engine;
 
@@ -46,65 +40,11 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
     return map[block.id] ?? String(index + 1);
   }
 
-  function handleRestart() {
-    if (isResetting) {
-      return;
-    }
-
-    setIsResetting(true);
-    resetTimerRef.current = window.setTimeout(() => {
-      goToStart();
-      setIsResetting(false);
-      resetTimerRef.current = null;
-    }, 280);
-  }
-
-  useEffect(() => {
-    if (mode === 'start') {
-      setIsResetting(false);
-    }
-  }, [mode]);
-
-  useEffect(() => {
-    return () => {
-      if (resetTimerRef.current !== null) {
-        window.clearTimeout(resetTimerRef.current);
-      }
-    };
-  }, []);
-
-  if (mode === 'start') {
-    return (
-      <nav className="bottom-menu bottom-menu--start" aria-label="Start scenario">
-        <button className="figma-play-button" type="button" onClick={play} aria-label="Play">
-          <span>
-            <Play size={44} strokeWidth={2.4} />
-          </span>
-        </button>
-      </nav>
-    );
-  }
-
   return (
     <nav
-      className={`bottom-menu bottom-menu--full bottom-menu--${mode} ${isResetting ? 'bottom-menu--leaving' : ''}`}
+      className={`bottom-menu bottom-menu--full bottom-menu--${mode}`}
       aria-label="Scenario controls"
     >
-      <div className="figma-menu-group figma-menu-group--system">
-        {mode === 'autoplay' ? (
-          <button className="figma-menu-button" type="button" onClick={stop} aria-label="Stop">
-            <Square size={18} strokeWidth={2.4} />
-          </button>
-        ) : (
-          <button className="figma-menu-button" type="button" onClick={play} aria-label="Play">
-            <Play size={18} strokeWidth={2.4} />
-          </button>
-        )}
-        <button className="figma-menu-button" type="button" onClick={handleRestart} aria-label="Restart">
-          <RotateCcw size={18} strokeWidth={2.4} />
-        </button>
-      </div>
-
       <div className="figma-menu-group figma-menu-group--pages">
         <span className="figma-menu-label">Страница</span>
         <button className="figma-menu-button" type="button" onClick={goPrevious} aria-label="Previous">

@@ -9,7 +9,7 @@ interface PresentationDeckScreenProps {
   language: Language;
 }
 
-const slideTransitionMs = 2600;
+const slideTransitionMs = 3800;
 const counterHoldMs = 1300;
 const counterDurationMs = 2200;
 

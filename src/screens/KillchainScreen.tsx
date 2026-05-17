@@ -1,4 +1,4 @@
-import { getKillchainStep } from '../core/autoplay';
+import { getKillchainStep } from '../core/navigation';
 import type { KillchainBlock, Language, ScenarioPosition } from '../core/types';
 
 interface KillchainScreenProps {

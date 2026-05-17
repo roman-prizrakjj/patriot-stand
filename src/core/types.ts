@@ -2,7 +2,7 @@ export type Language = 'ru' | 'en';
 
 export type ScenarioBlockType = 'start' | 'slide' | 'presentation' | 'video' | 'killchain' | 'external';
 
-export type PlaybackMode = 'start' | 'autoplay' | 'stopped';
+export type PlaybackMode = 'manual';
 
 export interface LocalizedText {
   ru: string;
@@ -57,10 +57,6 @@ export interface KillchainBlock extends BaseScenarioBlock {
 export type ScenarioBlock = SlideBlock | PresentationBlock | VideoBlock | KillchainBlock;
 
 export interface ScenarioConfig {
-  startScreen: {
-    title: LocalizedText;
-    subtitle: LocalizedText;
-  };
   languages: Language[];
   defaultLanguage: Language;
   transitionMs: number;

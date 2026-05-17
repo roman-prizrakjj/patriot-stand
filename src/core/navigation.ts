@@ -1,14 +1,6 @@
 import type { KillchainBlock, ScenarioBlock, ScenarioPosition } from './types';
 
-export function getBlockDuration(block: ScenarioBlock): number {
-  if (block.type === 'killchain') {
-    return block.stepDurationMs;
-  }
-
-  return block.durationMs;
-}
-
-export function getNextPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | 'start' {
+export function getNextPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | null {
   const block = blocks[position.blockIndex];
 
   if (block?.type === 'killchain' && position.killchainStepIndex < block.steps.length - 1) {
@@ -25,12 +17,12 @@ export function getNextPosition(blocks: ScenarioBlock[], position: ScenarioPosit
     };
   }
 
-  return 'start';
+  return null;
 }
 
-export function getPreviousPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | 'start' {
+export function getPreviousPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | null {
   if (position.blockIndex === 0 && position.killchainStepIndex === 0) {
-    return 'start';
+    return null;
   }
 
   if (position.killchainStepIndex > 0) {

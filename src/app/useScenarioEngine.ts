@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getBlockDuration, getNextPosition, getPreviousPosition } from '../core/autoplay';
+import { getNextPosition, getPreviousPosition } from '../core/navigation';
 import type { Language, PlaybackMode, ScenarioConfig, ScenarioPosition } from '../core/types';
 
 const firstPosition: ScenarioPosition = {
@@ -8,66 +8,44 @@ const firstPosition: ScenarioPosition = {
 };
 
 export function useScenarioEngine(config: ScenarioConfig) {
-  const [mode, setMode] = useState<PlaybackMode>('start');
+  const [mode] = useState<PlaybackMode>('manual');
   const [language, setLanguage] = useState<Language>(config.defaultLanguage);
   const [position, setPosition] = useState<ScenarioPosition>(firstPosition);
   const [showLanguageStinger, setShowLanguageStinger] = useState(false);
-  const timerRef = useRef<number | null>(null);
   const stingerTimerRef = useRef<number | null>(null);
 
   const currentBlock = config.blocks[position.blockIndex];
 
-  const clearAutoplayTimer = useCallback(() => {
-    if (timerRef.current !== null) {
-      window.clearTimeout(timerRef.current);
-      timerRef.current = null;
-    }
+  const goToStart = useCallback(() => {
+    setPosition(firstPosition);
   }, []);
 
-  const goToStart = useCallback(() => {
-    clearAutoplayTimer();
-    setMode('start');
-    setPosition(firstPosition);
-  }, [clearAutoplayTimer]);
-
-  const goToPosition = useCallback((nextPosition: ScenarioPosition, nextMode: PlaybackMode = mode) => {
+  const goToPosition = useCallback((nextPosition: ScenarioPosition) => {
     setPosition(nextPosition);
-    setMode(nextMode);
-  }, [mode]);
+  }, []);
 
   const goNext = useCallback(() => {
     const nextPosition = getNextPosition(config.blocks, position);
 
-    if (nextPosition === 'start') {
-      goToStart();
+    if (!nextPosition) {
       return;
     }
 
-    goToPosition(nextPosition, mode === 'start' ? 'autoplay' : mode);
-  }, [config.blocks, goToPosition, goToStart, mode, position]);
+    goToPosition(nextPosition);
+  }, [config.blocks, goToPosition, position]);
 
   const goPrevious = useCallback(() => {
     const previousPosition = getPreviousPosition(config.blocks, position);
 
-    if (previousPosition === 'start') {
-      goToStart();
+    if (!previousPosition) {
       return;
     }
 
-    goToPosition(previousPosition, mode === 'start' ? 'autoplay' : mode);
-  }, [config.blocks, goToPosition, goToStart, mode, position]);
-
-  const play = useCallback(() => {
-    setMode('autoplay');
-  }, []);
-
-  const stop = useCallback(() => {
-    clearAutoplayTimer();
-    setMode('stopped');
-  }, [clearAutoplayTimer]);
+    goToPosition(previousPosition);
+  }, [config.blocks, goToPosition, position]);
 
   const jumpToBlock = useCallback((blockIndex: number) => {
-    goToPosition({ blockIndex, killchainStepIndex: 0 }, 'stopped');
+    goToPosition({ blockIndex, killchainStepIndex: 0 });
   }, [goToPosition]);
 
   const switchLanguage = useCallback((nextLanguage: Language) => {
@@ -85,28 +63,12 @@ export function useScenarioEngine(config: ScenarioConfig) {
   }, []);
 
   useEffect(() => {
-    clearAutoplayTimer();
-
-    if (mode !== 'autoplay' || !currentBlock) {
-      return;
-    }
-
-    timerRef.current = window.setTimeout(() => {
-      goNext();
-    }, getBlockDuration(currentBlock));
-
-    return clearAutoplayTimer;
-  }, [clearAutoplayTimer, currentBlock, goNext, mode, position]);
-
-  useEffect(() => {
     return () => {
-      clearAutoplayTimer();
-
       if (stingerTimerRef.current !== null) {
         window.clearTimeout(stingerTimerRef.current);
       }
     };
-  }, [clearAutoplayTimer]);
+  }, []);
 
   return useMemo(() => ({
     currentBlock,
@@ -116,10 +78,8 @@ export function useScenarioEngine(config: ScenarioConfig) {
     jumpToBlock,
     language,
     mode,
-    play,
     position,
     showLanguageStinger,
-    stop,
     switchLanguage,
   }), [
     currentBlock,
@@ -129,10 +89,8 @@ export function useScenarioEngine(config: ScenarioConfig) {
     jumpToBlock,
     language,
     mode,
-    play,
     position,
     showLanguageStinger,
-    stop,
     switchLanguage,
   ]);
 }

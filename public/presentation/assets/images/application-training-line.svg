@@ -44,22 +44,42 @@
 </g>
 <g id="Training running indicators">
 <circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
-<animateMotion dur="2.8s" repeatCount="indefinite" rotate="auto">
-<mpath href="#training-motion-1"/>
-</animateMotion>
-</circle>
-<circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
-<animateMotion dur="2.8s" begin=".25s" repeatCount="indefinite" rotate="auto">
+<animateMotion dur="2.8s" begin="0s" repeatCount="indefinite" rotate="auto">
 <mpath href="#training-motion-2"/>
 </animateMotion>
 </circle>
 <circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
-<animateMotion dur="2.8s" begin=".5s" repeatCount="indefinite" rotate="auto">
+<animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite" rotate="auto">
+<mpath href="#training-motion-2"/>
+</animateMotion>
+</circle>
+<circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
+<animateMotion dur="2.8s" begin=".72s" repeatCount="indefinite" rotate="auto" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
+<mpath href="#training-motion-1"/>
+</animateMotion>
+</circle>
+<circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
+<animateMotion dur="2.8s" begin="2.12s" repeatCount="indefinite" rotate="auto" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
+<mpath href="#training-motion-1"/>
+</animateMotion>
+</circle>
+<circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
+<animateMotion dur="2.8s" begin="0s" repeatCount="indefinite" rotate="auto" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
 <mpath href="#training-motion-3"/>
 </animateMotion>
 </circle>
 <circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
-<animateMotion dur="2.8s" begin=".75s" repeatCount="indefinite" rotate="auto">
+<animateMotion dur="2.8s" begin="1.4s" repeatCount="indefinite" rotate="auto" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
+<mpath href="#training-motion-3"/>
+</animateMotion>
+</circle>
+<circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
+<animateMotion dur="2.8s" begin=".72s" repeatCount="indefinite" rotate="auto" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
+<mpath href="#training-motion-4"/>
+</animateMotion>
+</circle>
+<circle r="7" fill="#195DF9" filter="url(#indicator_glow_training)">
+<animateMotion dur="2.8s" begin="2.12s" repeatCount="indefinite" rotate="auto" calcMode="linear" keyPoints="1;0" keyTimes="0;1">
 <mpath href="#training-motion-4"/>
 </animateMotion>
 </circle>

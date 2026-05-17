@@ -9,16 +9,6 @@ export const scenarioConfig: ScenarioConfig = {
   defaultLanguage: 'ru',
   languages: ['ru', 'en'],
   transitionMs: 420,
-  startScreen: {
-    title: {
-      ru: 'Standoff / Patriot',
-      en: 'Standoff / Patriot',
-    },
-    subtitle: {
-      ru: 'Автоматический сценарий для стенда',
-      en: 'Autoplay scenario for the stand',
-    },
-  },
   externalTargets: {
     ptVision: 'pt-vision-standoff-15',
   },

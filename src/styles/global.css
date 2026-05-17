@@ -45,21 +45,11 @@ button {
   padding-bottom: 0;
 }
 
-.start-screen,
 .content-screen,
 .video-screen {
   position: relative;
   width: 100%;
   height: 100%;
-}
-
-.start-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 62px;
-  isolation: isolate;
 }
 
 .ambient-grid {
@@ -73,11 +63,6 @@ button {
   mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
 }
 
-.start-copy {
-  text-align: center;
-}
-
-.start-copy p,
 .eyebrow,
 .video-title p {
   margin: 0 0 24px;
@@ -87,31 +72,12 @@ button {
   text-transform: uppercase;
 }
 
-.start-copy h1,
 .content-copy h1,
 .video-title h1 {
   margin: 0;
   font-size: 120px;
   line-height: 1;
   letter-spacing: 0;
-}
-
-.start-copy span {
-  display: block;
-  margin-top: 28px;
-  color: #b9c3ce;
-  font-size: 34px;
-}
-
-.start-play {
-  width: 116px;
-  height: 116px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgb(255 255 255 / 0.24);
-  border-radius: 50%;
-  color: #061013;
-  background: #67f5dc;
 }
 
 .content-screen {
@@ -217,17 +183,6 @@ button {
   color: #ffffff;
 }
 
-.bottom-menu--start {
-  display: block;
-  width: max-content;
-  height: max-content;
-  right: clamp(24px, 3vw, 96px);
-  bottom: clamp(24px, 5vh, 112px);
-  transform: scale(var(--figma-menu-scale));
-  transform-origin: bottom right;
-  animation: figma-play-appear 320ms cubic-bezier(.22, 1, .36, 1) both;
-}
-
 .bottom-menu--full {
   right: 28px;
   bottom: 14px;
@@ -241,39 +196,9 @@ button {
   animation: figma-menu-appear 360ms cubic-bezier(.22, 1, .36, 1) both;
 }
 
-.bottom-menu--leaving {
-  pointer-events: none;
-  animation: figma-menu-leave 280ms cubic-bezier(.4, 0, 1, 1) both;
-}
-
-.figma-play-button,
 .figma-menu-group {
   border: 1px solid rgb(255 255 255 / 0.1);
   backdrop-filter: blur(25px);
-}
-
-.figma-play-button {
-  width: 116px;
-  height: 116px;
-  display: grid;
-  place-items: center;
-  padding: 20px;
-  border-width: 2px;
-  border-color: #f42d2d;
-  border-radius: 30px;
-  color: #ffffff;
-  background: rgb(244 45 45 / 0.4);
-  box-shadow: 0 26px 80px rgb(244 45 45 / 0.22);
-}
-
-.figma-play-button span {
-  width: 76px;
-  height: 76px;
-  display: grid;
-  place-items: center;
-  border-radius: 15px;
-  background: #f42d2d;
-  backdrop-filter: blur(50px);
 }
 
 .figma-menu-group {
@@ -283,10 +208,6 @@ button {
   padding: 8px;
   border-radius: 18px;
   background: rgb(34 34 34 / 0.4);
-}
-
-.figma-menu-group--system {
-  gap: 16px;
 }
 
 .figma-menu-group--pages {
@@ -364,16 +285,11 @@ button {
   min-width: 72px;
 }
 
-.figma-play-button:hover,
 .figma-menu-button:hover,
 .figma-menu-text-button:hover,
 .figma-page-list button:hover,
 .figma-menu-group--language button:hover {
   background: rgb(255 255 255 / 0.18);
-}
-
-.figma-play-button:hover {
-  background: rgb(244 45 45 / 0.5);
 }
 
 @keyframes figma-menu-appear {
@@ -386,34 +302,6 @@ button {
   to {
     opacity: 1;
     transform: translateY(0) scale(var(--figma-menu-scale));
-    filter: blur(0);
-  }
-}
-
-@keyframes figma-menu-leave {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(var(--figma-menu-scale));
-    filter: blur(0);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(14px) scale(var(--figma-menu-scale));
-    filter: blur(8px);
-  }
-}
-
-@keyframes figma-play-appear {
-  from {
-    opacity: 0;
-    transform: translate(10px, 10px) scale(calc(var(--figma-menu-scale) * .92));
-    filter: blur(8px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(0, 0) scale(var(--figma-menu-scale));
     filter: blur(0);
   }
 }
@@ -445,13 +333,8 @@ button {
     padding-right: 96px;
   }
 
-  .start-copy h1,
   .content-copy h1,
   .video-title h1 {
     font-size: 92px;
-  }
-
-  .start-screen {
-    gap: 38px;
   }
 }
