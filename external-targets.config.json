@@ -1,0 +1,12 @@
+{
+  "pt-vision-standoff-15": {
+    "windowTitleIncludes": [
+      "Telegram"
+    ],
+    "processNameIncludes": [
+      "Telegram"
+    ],
+    "processPathIncludes": []
+  }
+}
+

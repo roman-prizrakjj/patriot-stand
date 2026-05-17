@@ -1,0 +1,60 @@
+{
+  "image": "нефтегаз.png",
+  "coordinateSpace": {
+    "type": "normalized-stage",
+    "aspectRatio": "16:9",
+    "designWidth": 3840,
+    "designHeight": 2160
+  },
+  "targets": [
+    {
+      "id": "target-638",
+      "label": "",
+      "segment": "servers",
+      "x": 0.333333,
+      "y": 0.262168
+    },
+    {
+      "id": "target-643",
+      "label": "",
+      "segment": "users",
+      "x": 0.351213,
+      "y": 0.337094
+    },
+    {
+      "id": "target-685",
+      "label": "",
+      "segment": "users",
+      "x": 0.432312,
+      "y": 0.41656
+    },
+    {
+      "id": "target-676",
+      "label": "",
+      "segment": "servers",
+      "x": 0.434227,
+      "y": 0.314389
+    },
+    {
+      "id": "target-679",
+      "label": "",
+      "segment": "servers",
+      "x": 0.45977,
+      "y": 0.3405
+    },
+    {
+      "id": "target-667",
+      "label": "",
+      "segment": "users",
+      "x": 0.653257,
+      "y": 0.24741
+    },
+    {
+      "id": "target-674",
+      "label": "",
+      "segment": "tech",
+      "x": 0.609195,
+      "y": 0.347311
+    }
+  ]
+}

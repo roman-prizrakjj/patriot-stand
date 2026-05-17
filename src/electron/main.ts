@@ -1,6 +1,7 @@
-import { app, BrowserWindow, ipcMain, net, protocol } from 'electron';
+import { app, BrowserWindow, ipcMain, net, protocol, screen } from 'electron';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { focusExternalTarget } from './externalTargets.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const devServerUrl = process.env.VITE_DEV_SERVER_URL;
@@ -42,7 +43,7 @@ function createWindow() {
     autoHideMenuBar: true,
     backgroundColor: '#05070a',
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, 'preload.cjs'),
       contextIsolation: true,
       nodeIntegration: false,
     },
@@ -77,9 +78,17 @@ app.on('activate', () => {
 });
 
 ipcMain.handle('patriot:launch-external', async (_event, target: string) => {
-  return {
-    ok: false,
-    target,
-    reason: 'External PT Vision launcher is not configured yet.',
-  };
+  const displayAreas = screen.getAllDisplays().flatMap((display) => [
+    display.bounds,
+    display.workArea,
+  ]);
+  const result = await focusExternalTarget(target, appRoot, { displayAreas });
+
+  if (result.ok) {
+    console.info('External target focus succeeded:', result);
+  } else {
+    console.warn('External target focus failed:', result);
+  }
+
+  return result;
 });

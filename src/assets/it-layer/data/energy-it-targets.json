@@ -1,0 +1,81 @@
+{
+  "image": "energyen.png",
+  "coordinateSpace": {
+    "type": "normalized-stage",
+    "aspectRatio": "16:9",
+    "designWidth": 3840,
+    "designHeight": 2160
+  },
+  "targets": [
+    {
+      "id": "target-601",
+      "label": "",
+      "segment": "perimeter",
+      "x": 0.266284,
+      "y": 0.331418
+    },
+    {
+      "id": "target-608",
+      "label": "",
+      "segment": "servers",
+      "x": 0.302043,
+      "y": 0.299631
+    },
+    {
+      "id": "target-612",
+      "label": "",
+      "segment": "users",
+      "x": 0.327586,
+      "y": 0.329147
+    },
+    {
+      "id": "target-611",
+      "label": "",
+      "segment": "servers",
+      "x": 0.387612,
+      "y": 0.279197
+    },
+    {
+      "id": "target-610",
+      "label": "",
+      "segment": "servers",
+      "x": 0.388889,
+      "y": 0.231517
+    },
+    {
+      "id": "target-632",
+      "label": "",
+      "segment": "servers",
+      "x": 0.413793,
+      "y": 0.255357
+    },
+    {
+      "id": "target-628",
+      "label": "",
+      "segment": "tech",
+      "x": 0.431673,
+      "y": 0.196325
+    },
+    {
+      "id": "target-605",
+      "label": "",
+      "segment": "tech",
+      "x": 0.521711,
+      "y": 0.24514
+    },
+    {
+      "id": "target-740",
+      "label": "",
+      "segment": "tech",
+      "x": 0.547893,
+      "y": 0.220165
+    },
+    {
+      "id": "target-741",
+      "label": "",
+      "segment": "tech",
+      "x": 0.570881,
+      "y": 0.198595
+    }
+  ]
+}

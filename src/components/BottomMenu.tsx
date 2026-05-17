@@ -2,6 +2,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { useScenarioEngine } from '../app/useScenarioEngine';
 import type { ScenarioBlock } from '../core/types';
 import type { ScenarioConfig } from '../core/types';
+import { triggerPtVisionStreamDeck } from '../integrations/streamDeck/useStreamDeckSync';
 
 type ScenarioEngine = ReturnType<typeof useScenarioEngine>;
 
@@ -22,7 +23,21 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
   } = engine;
 
   async function launchPtVision() {
-    await window.patriotHost?.launchExternal(config.externalTargets.ptVision);
+    void triggerPtVisionStreamDeck(language);
+
+    if (!window.patriotHost) {
+      console.warn('PT Vision focus failed: patriotHost bridge is unavailable.');
+      return;
+    }
+
+    const result = await window.patriotHost.launchExternal(config.externalTargets.ptVision);
+
+    if (result.ok) {
+      console.info('PT Vision focus succeeded:', result);
+      return;
+    }
+
+    console.warn('PT Vision focus failed:', result);
   }
 
   function getBlockLabel(block: ScenarioBlock, index: number) {

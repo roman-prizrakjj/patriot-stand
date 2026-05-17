@@ -1,0 +1,331 @@
+{
+  "id": "energy-it-attack-steps",
+  "title": "Энергетика. IT-слой",
+  "industry": "Энергетика",
+  "image": "energyen.png",
+  "targetsFile": "energy-it-targets.json",
+  "risk": {
+    "label": "Межотраслевой риск",
+    "title": "Отключение всех электрических подстанций"
+  },
+  "i18n": {
+    "en": {
+      "title": "Energy. IT Layer",
+      "industry": "Energy",
+      "risk": {
+        "label": "Cross-industry critical event triggered",
+        "title": "Shutdown of all electrical substations"
+      },
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "CVE exploitation",
+          "attackTarget": "Energo dispatch control center's portal",
+          "targetSegment": "perimeter",
+          "mitreTactics": "TA0001. Initial Access",
+          "mitreTechniques": "T1190. Exploit Public-Facing Application"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Creation of Network Tunnel",
+          "attackTarget": "Energo dispatch control center's portal",
+          "targetSegment": "perimeter",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1570. Lateral Tool Transfer"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Network Data Collection",
+          "attackTarget": "Renewable energy certification service",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0043. Reconnaissance",
+          "mitreTechniques": "T1590. Gather Victim Network Information"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Exploitation for Client Execution",
+          "attackTarget": "Renewable energy certification service",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0002. Execution",
+          "mitreTechniques": "T1203. Exploitation for Client Execution"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Creation of Network Tunnel",
+          "attackTarget": "Energo dispatch control center's workstations",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1570. Lateral Tool Transfer"
+        },
+        {
+          "stepNumber": 6,
+          "title": "Lateral Movement",
+          "attackTarget": "Energo dispatch control center's workstations",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1210. Exploitation of Remote Services"
+        },
+        {
+          "stepNumber": 7,
+          "title": "Exploitation for Client Execution",
+          "attackTarget": "Energo dispatch control center's corporate password manager",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0002. Execution",
+          "mitreTechniques": "T1203. Exploitation for Client Execution"
+        },
+        {
+          "stepNumber": 8,
+          "title": "Obtaining of Credentials from Password Stores",
+          "attackTarget": "Energo dispatch control center's corporate password manager",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1555. Credentials from Password Stores"
+        },
+        {
+          "stepNumber": 9,
+          "title": "Access to Industrial Resources",
+          "attackTarget": "Electrical substation management system (first substation)",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0040. Impact",
+          "mitreTechniques": "T1489. Service Stop"
+        },
+        {
+          "stepNumber": 10,
+          "title": "Local Privilege Escalation",
+          "attackTarget": "Energo dispatch control center operator's workstation",
+          "targetSegment": "users",
+          "mitreTactics": "TA0004. Privilege Escalation",
+          "mitreTechniques": "T1548. Abuse Elevation Control Mechanism"
+        },
+        {
+          "stepNumber": 11,
+          "title": "Obtaining of Private Keys",
+          "attackTarget": "Energo dispatch control center operator's workstation",
+          "targetSegment": "users",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1212. Exploitation for Credential Access"
+        },
+        {
+          "stepNumber": 12,
+          "title": "Establishment of SSH connection",
+          "attackTarget": "Energo dispatch control center's proxy server",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1021. Remote Services"
+        },
+        {
+          "stepNumber": 13,
+          "title": "Lateral Movement",
+          "attackTarget": "Corporate VPN server (second substation)",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1021. Remote Services"
+        },
+        {
+          "stepNumber": 14,
+          "title": "Creation of Network Tunnel",
+          "attackTarget": "Electrical substation operators' workstations",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1570. Lateral Tool Transfer"
+        },
+        {
+          "stepNumber": 15,
+          "title": "Exploitation for Client Execution",
+          "attackTarget": "Electrical substation operators' workstations",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0002. Execution",
+          "mitreTechniques": "T1203. Exploitation for Client Execution"
+        },
+        {
+          "stepNumber": 16,
+          "title": "Credential Reuse Attack",
+          "attackTarget": "Electrical substation operators' workstations",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1552. Unsecured Credentials"
+        },
+        {
+          "stepNumber": 17,
+          "title": "Access to Industrial Resources",
+          "attackTarget": "Electrical substation management system (second substation)",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1021. Remote Services"
+        },
+        {
+          "stepNumber": 18,
+          "title": "Triggering of critical event",
+          "attackTarget": "Electrical substation management system (second substation)",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0040. Impact",
+          "mitreTechniques": "T1489. Service Stop"
+        }
+      ]
+    }
+  },
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Эксплуатация уязвимости из списка CVE",
+      "targetId": "target-601",
+      "attackTarget": "Портал ЦДУ «Энерго»",
+      "targetSegment": "perimeter",
+      "mitreTactics": "TA0001. Первоначальный доступ",
+      "mitreTechniques": "T1190. Недостатки в общедоступном приложении"
+    },
+    {
+      "stepNumber": 2,
+      "title": "Построение сетевого туннеля",
+      "targetId": "target-601",
+      "attackTarget": "Портал ЦДУ «Энерго»",
+      "targetSegment": "perimeter",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1570. Передача инструментов внутри периметра"
+    },
+    {
+      "stepNumber": 3,
+      "title": "Сбор информации о сетевой инфраструктуре",
+      "targetId": "target-632",
+      "attackTarget": "Сервис сертификации использования возобновляемой энергии",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0043. Разведка",
+      "mitreTechniques": "T1590. Сбор информации об атакуемой сетевой инфраструктуре"
+    },
+    {
+      "stepNumber": 4,
+      "title": "Эксплуатация уязвимости в клиентском ПО",
+      "targetId": "target-632",
+      "attackTarget": "Сервис сертификации использования возобновляемой энергии",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0002. Выполнение",
+      "mitreTechniques": "T1203. Эксплуатация уязвимостей в клиентском ПО"
+    },
+    {
+      "stepNumber": 5,
+      "title": "Построение сетевого туннеля",
+      "targetId": "target-608",
+      "attackTarget": "Рабочие станции сотрудников ЦДУ «Энерго»",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1570. Передача инструментов внутри периметра"
+    },
+    {
+      "stepNumber": 6,
+      "title": "Перемещение внутри периметра",
+      "targetId": "target-608",
+      "attackTarget": "Рабочие станции сотрудников ЦДУ «Энерго»",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1210. Эксплуатация уязвимостей в удаленных службах"
+    },
+    {
+      "stepNumber": 7,
+      "title": "Эксплуатация уязвимости в клиентском ПО",
+      "targetId": "target-611",
+      "attackTarget": "Корпоративный парольный менеджер ЦДУ «Энерго»",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0002. Выполнение",
+      "mitreTechniques": "T1203. Эксплуатация уязвимостей в клиентском ПО"
+    },
+    {
+      "stepNumber": 8,
+      "title": "Получение учетных данных из хранилища паролей",
+      "targetId": "target-611",
+      "attackTarget": "Корпоративный парольный менеджер ЦДУ «Энерго»",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1555. Учетные данные из хранилищ паролей"
+    },
+    {
+      "stepNumber": 9,
+      "title": "Получение доступа к ресурсу в технологическом сегменте",
+      "targetId": "target-628",
+      "attackTarget": "Система управления электрической подстанцией №1",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0040. Деструктивное воздействие",
+      "mitreTechniques": "T1489. Остановка службы"
+    },
+    {
+      "stepNumber": 10,
+      "title": "Локальное повышение привилегий на ресурсе",
+      "targetId": "target-612",
+      "attackTarget": "Рабочая станция оператора ЦДУ «Энерго»",
+      "targetSegment": "users",
+      "mitreTactics": "TA0004. Повышение привилегий",
+      "mitreTechniques": "T1548. Обход механизмов контроля привилегий"
+    },
+    {
+      "stepNumber": 11,
+      "title": "Получение закрытых ключей",
+      "targetId": "target-612",
+      "attackTarget": "Рабочая станция оператора ЦДУ «Энерго»",
+      "targetSegment": "users",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1212. Эксплуатация уязвимостей для получения учетных данных"
+    },
+    {
+      "stepNumber": 12,
+      "title": "Подключение через SSH",
+      "targetId": "target-610",
+      "attackTarget": "Прокси-сервер ЦДУ «Энерго»",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1021. Службы удаленного доступа"
+    },
+    {
+      "stepNumber": 13,
+      "title": "Перемещение внутри периметра",
+      "targetId": "target-740",
+      "attackTarget": "Корпоративный VPN-сервер подстанции №2",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1021. Службы удаленного доступа"
+    },
+    {
+      "stepNumber": 14,
+      "title": "Построение сетевого туннеля",
+      "targetId": "target-605",
+      "attackTarget": "Рабочие станции операторов электрической подстанции №2",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1570. Передача инструментов внутри периметра"
+    },
+    {
+      "stepNumber": 15,
+      "title": "Эксплуатация уязвимости в клиентском ПО",
+      "targetId": "target-605",
+      "attackTarget": "Рабочие станции операторов электрической подстанции №2",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0002. Выполнение",
+      "mitreTechniques": "T1203. Эксплуатация уязвимостей в клиентском ПО"
+    },
+    {
+      "stepNumber": 16,
+      "title": "Переиспользование учетных данных",
+      "targetId": "target-605",
+      "attackTarget": "Рабочие станции операторов электрической подстанции №2",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1552. Незащищенные учетные данные"
+    },
+    {
+      "stepNumber": 17,
+      "title": "Получение доступа к ресурсу в технологическом сегменте",
+      "targetId": "target-741",
+      "attackTarget": "Система управления электрической подстанцией №2",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1021. Службы удаленного доступа"
+    },
+    {
+      "stepNumber": 18,
+      "title": "Реализация критического события",
+      "targetId": "target-741",
+      "attackTarget": "Система управления электрической подстанцией №2",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0040. Деструктивное воздействие",
+      "mitreTechniques": "T1489. Остановка службы"
+    }
+  ]
+}

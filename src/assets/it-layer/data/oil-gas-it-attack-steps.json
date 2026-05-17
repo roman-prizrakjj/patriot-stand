@@ -1,0 +1,212 @@
+{
+  "id": "neftegaz-attack-steps",
+  "title": "Нефтегаз. IT-слой",
+  "industry": "Нефтегаз",
+  "image": "нефтегаз.png",
+  "targetsFile": "neftegaz-targets.json",
+  "risk": {
+    "label": "Межотраслевой риск",
+    "title": "Нарушение технологического процесса нефтегазового сегмента"
+  },
+  "i18n": {
+    "en": {
+      "title": "Oil and gas. IT Layer",
+      "industry": "Oil and gas",
+      "risk": {
+        "label": "Critical event triggered",
+        "title": "Disruption of the oil and gas technological process"
+      },
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": "Enumeration (of domain names, logins, etc.)",
+          "attackTarget": "Mail server",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1110. Brute Force"
+        },
+        {
+          "stepNumber": 2,
+          "title": "Spearphishing attachment attack",
+          "attackTarget": "Employees' workstations",
+          "targetSegment": "users",
+          "mitreTactics": "TA0001. Initial Access",
+          "mitreTechniques": "T1566. Phishing"
+        },
+        {
+          "stepNumber": 3,
+          "title": "Enumeration (of domain names, logins, etc.)",
+          "attackTarget": "Corporate collaboration service",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1110. Brute Force"
+        },
+        {
+          "stepNumber": 4,
+          "title": "Credential hijacking",
+          "attackTarget": "Corporate collaboration service",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1003. OS Credential Dumping"
+        },
+        {
+          "stepNumber": 5,
+          "title": "Reverse engineering",
+          "attackTarget": "Engineer's workstation",
+          "targetSegment": "users",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1555. Credentials from Password Stores"
+        },
+        {
+          "stepNumber": 6,
+          "title": "Establishment of SSH connection",
+          "attackTarget": "Safety training platform",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1021. Remote Services"
+        },
+        {
+          "stepNumber": 7,
+          "title": "Local privilege escalation",
+          "attackTarget": "Safety training platform",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0004. Privilege Escalation",
+          "mitreTechniques": "T1611. Escape to Host"
+        },
+        {
+          "stepNumber": 8,
+          "title": "Obtaining of local file information",
+          "attackTarget": "Safety training platform",
+          "targetSegment": "servers",
+          "mitreTactics": "TA0006. Credential Access",
+          "mitreTechniques": "T1552. Unsecured Credentials"
+        },
+        {
+          "stepNumber": 9,
+          "title": "Establishment of SSH connection",
+          "attackTarget": "Oil sector ICS operators' workstations",
+          "targetSegment": "users",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1021. Remote Services"
+        },
+        {
+          "stepNumber": 10,
+          "title": "Establishment of RDP connection",
+          "attackTarget": "Hydrocracking control system",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0008. Lateral Movement",
+          "mitreTechniques": "T1021. Remote Services"
+        },
+        {
+          "stepNumber": 11,
+          "title": "Triggering of critical event",
+          "attackTarget": "Hydrocracking control system",
+          "targetSegment": "tech",
+          "mitreTactics": "TA0040. Impact",
+          "mitreTechniques": "T1565. Data Manipulation"
+        }
+      ]
+    }
+  },
+  "steps": [
+    {
+      "stepNumber": 1,
+      "title": "Перечисление (доменных имен, логинов и т.п.)",
+      "targetId": "target-638",
+      "attackTarget": "Почтовый сервер",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1110. Метод перебора"
+    },
+    {
+      "stepNumber": 2,
+      "title": "Целевой фишинг с вложением",
+      "targetId": "target-685",
+      "attackTarget": "Рабочие станции сотрудников",
+      "targetSegment": "users",
+      "mitreTactics": "TA0001. Первоначальный доступ",
+      "mitreTechniques": "T1566. Фишинг"
+    },
+    {
+      "stepNumber": 3,
+      "title": "Перечисление (доменных имен, логинов и т.п.)",
+      "targetId": "target-676",
+      "attackTarget": "Корпоративный сервис для совместной работы",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1110. Метод перебора"
+    },
+    {
+      "stepNumber": 4,
+      "title": "Перехват учетных данных",
+      "targetId": "target-676",
+      "attackTarget": "Корпоративный сервис для совместной работы",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1003. Получение дампа учетных данных"
+    },
+    {
+      "stepNumber": 5,
+      "title": "Реверс",
+      "targetId": "target-643",
+      "attackTarget": "Рабочая станция инженера",
+      "targetSegment": "users",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1555. Учетные данные из хранилищ паролей"
+    },
+    {
+      "stepNumber": 6,
+      "title": "Подключение через SSH",
+      "targetId": "target-679",
+      "attackTarget": "Платформа для проведения инструктажа по технике безопасности",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1021. Службы удаленного доступа"
+    },
+    {
+      "stepNumber": 7,
+      "title": "Локальное повышение привилегий на ресурсе",
+      "targetId": "target-679",
+      "attackTarget": "Платформа для проведения инструктажа по технике безопасности",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0004. Повышение привилегий",
+      "mitreTechniques": "T1611. Выход за пределы контейнера"
+    },
+    {
+      "stepNumber": 8,
+      "title": "Получение информации из локальных файлов",
+      "targetId": "target-679",
+      "attackTarget": "Платформа для проведения инструктажа по технике безопасности",
+      "targetSegment": "servers",
+      "mitreTactics": "TA0006. Получение учетных данных",
+      "mitreTechniques": "T1552. Незащищенные учетные данные"
+    },
+    {
+      "stepNumber": 9,
+      "title": "Подключение через SSH",
+      "targetId": "target-667",
+      "attackTarget": "Рабочие станции операторов АСУ ТП нефтяного сегмента",
+      "targetSegment": "users",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1021. Службы удаленного доступа"
+    },
+    {
+      "stepNumber": 10,
+      "title": "Подключение через протокол удаленного рабочего стола (RDP)",
+      "targetId": "target-674",
+      "attackTarget": "Система управления гидрокрекингом",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0008. Перемещение внутри периметра",
+      "mitreTechniques": "T1021. Службы удаленного доступа"
+    },
+    {
+      "stepNumber": 11,
+      "title": "Реализация критического события",
+      "targetId": "target-674",
+      "attackTarget": "Система управления гидрокрекингом",
+      "targetSegment": "tech",
+      "mitreTactics": "TA0040. Деструктивное воздействие",
+      "mitreTechniques": "T1565. Манипуляции с данными"
+    }
+  ]
+}

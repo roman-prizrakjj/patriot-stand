@@ -48,9 +48,81 @@ export interface KillchainStep {
   activeNodes: string[];
 }
 
+export interface ItLayerReportStep {
+  stepNumber: number;
+  title: string;
+  targetId: string;
+  attackTarget: string;
+  targetSegment: string;
+  mitreTactics: string;
+  mitreTechniques: string;
+}
+
+export interface ItLayerReportStepTranslation {
+  stepNumber: number;
+  title?: string;
+  attackTarget?: string;
+  targetSegment?: string;
+  mitreTactics?: string;
+  mitreTechniques?: string;
+}
+
+export interface ItLayerReportTranslation {
+  title?: string;
+  industry?: string;
+  risk?: {
+    label?: string;
+    title?: string;
+  };
+  steps?: ItLayerReportStepTranslation[];
+}
+
+export interface ItLayerReport {
+  id: string;
+  title: string;
+  industry: string;
+  image: string;
+  targetsFile: string;
+  risk: {
+    label: string;
+    title: string;
+  };
+  i18n?: Partial<Record<Language, ItLayerReportTranslation>>;
+  steps: ItLayerReportStep[];
+}
+
+export interface ItLayerTarget {
+  id: string;
+  label: string;
+  segment: string;
+  x: number;
+  y: number;
+}
+
+export interface ItLayerTargetsDataset {
+  image: string;
+  coordinateSpace: {
+    type: string;
+    aspectRatio: string;
+    designWidth: number;
+    designHeight: number;
+  };
+  targets: ItLayerTarget[];
+}
+
+export interface ItLayerData {
+  report: ItLayerReport;
+  targets: ItLayerTargetsDataset;
+}
+
 export interface KillchainBlock extends BaseScenarioBlock {
   type: 'killchain';
   stepDurationMs: number;
+  map?: {
+    ru: string;
+    en: string;
+  };
+  itLayer?: ItLayerData;
   steps: KillchainStep[];
 }
 

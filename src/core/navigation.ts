@@ -1,6 +1,10 @@
 import type { KillchainBlock, ScenarioBlock, ScenarioPosition } from './types';
 
 export function getNextPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | null {
+  if (blocks.length === 0) {
+    return null;
+  }
+
   const block = blocks[position.blockIndex];
 
   if (block?.type === 'killchain' && position.killchainStepIndex < block.steps.length - 1) {
@@ -17,7 +21,10 @@ export function getNextPosition(blocks: ScenarioBlock[], position: ScenarioPosit
     };
   }
 
-  return null;
+  return {
+    blockIndex: 0,
+    killchainStepIndex: 0,
+  };
 }
 
 export function getPreviousPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | null {

@@ -1,9 +1,39 @@
-import type { ScenarioConfig } from '../core/types';
+import energyItReportJson from '../assets/it-layer/data/energy-it-attack-steps.json';
+import energyItTargetsJson from '../assets/it-layer/data/energy-it-targets.json';
+import oilGasItReportJson from '../assets/it-layer/data/oil-gas-it-attack-steps.json';
+import oilGasItTargetsJson from '../assets/it-layer/data/oil-gas-it-targets.json';
+import type { ItLayerReport, ItLayerTargetsDataset, KillchainStep, ScenarioConfig } from '../core/types';
 
 const oilPosterRu = new URL('../../sorci/oilru.png', import.meta.url).href;
 const oilPosterEn = new URL('../../sorci/oilen.png', import.meta.url).href;
 const energyPosterRu = new URL('../../sorci/energyru.png', import.meta.url).href;
 const energyPosterEn = new URL('../../sorci/energyen.png', import.meta.url).href;
+const oilGasItMapRu = new URL('../assets/it-layer/maps/oil-gas-it-map-ru.png', import.meta.url).href;
+const oilGasItMapEn = new URL('../assets/it-layer/maps/oil-gas-it-map-en.png', import.meta.url).href;
+const energyItMapRu = new URL('../assets/it-layer/maps/energy-it-map-ru.png', import.meta.url).href;
+const energyItMapEn = new URL('../assets/it-layer/maps/energy-it-map-en.png', import.meta.url).href;
+
+const energyItReport = energyItReportJson as ItLayerReport;
+const energyItTargets = energyItTargetsJson as ItLayerTargetsDataset;
+const oilGasItReport = oilGasItReportJson as ItLayerReport;
+const oilGasItTargets = oilGasItTargetsJson as ItLayerTargetsDataset;
+
+function getMitreCode(value: string) {
+  return value.split('.')[0]?.trim() || value;
+}
+
+function createKillchainSteps(report: ItLayerReport): KillchainStep[] {
+  return report.steps.map((step) => ({
+    id: `step-${String(step.stepNumber).padStart(2, '0')}`,
+    title: { ru: step.title, en: step.title },
+    description: { ru: step.attackTarget, en: step.attackTarget },
+    mitreTags: [
+      getMitreCode(step.mitreTactics),
+      getMitreCode(step.mitreTechniques),
+    ],
+    activeNodes: [step.targetSegment],
+  }));
+}
 
 export const scenarioConfig: ScenarioConfig = {
   defaultLanguage: 'ru',
@@ -75,38 +105,15 @@ export const scenarioConfig: ScenarioConfig = {
       durationMs: 18000,
       stepDurationMs: 6000,
       title: { ru: 'IT-слой: нефть', en: 'IT Layer: Oil' },
-      steps: [
-        {
-          id: 'recon',
-          title: { ru: 'Разведка', en: 'Reconnaissance' },
-          description: {
-            ru: 'Атакующий обнаруживает открытые сервисы и инфраструктурные связи.',
-            en: 'The attacker identifies exposed services and infrastructure links.',
-          },
-          mitreTags: ['T1595', 'T1592'],
-          activeNodes: ['edge', 'dmz'],
-        },
-        {
-          id: 'initial-access',
-          title: { ru: 'Первичный доступ', en: 'Initial Access' },
-          description: {
-            ru: 'Компрометация периметра и закрепление в сегменте.',
-            en: 'Perimeter compromise and foothold establishment.',
-          },
-          mitreTags: ['T1190', 'T1078'],
-          activeNodes: ['vpn', 'app'],
-        },
-        {
-          id: 'impact',
-          title: { ru: 'Воздействие', en: 'Impact' },
-          description: {
-            ru: 'Демонстрация бизнес-риска и технических следов атаки.',
-            en: 'Business impact and technical attack traces are demonstrated.',
-          },
-          mitreTags: ['T1486', 'T1499'],
-          activeNodes: ['scada', 'report'],
-        },
-      ],
+      map: {
+        ru: oilGasItMapRu,
+        en: oilGasItMapEn,
+      },
+      itLayer: {
+        report: oilGasItReport,
+        targets: oilGasItTargets,
+      },
+      steps: createKillchainSteps(oilGasItReport),
     },
     {
       id: 'risk-intersec',
@@ -128,28 +135,15 @@ export const scenarioConfig: ScenarioConfig = {
       durationMs: 18000,
       stepDurationMs: 6000,
       title: { ru: 'Межотраслевой IT-слой', en: 'Cross-industry IT Layer' },
-      steps: [
-        {
-          id: 'pivot',
-          title: { ru: 'Расширение доступа', en: 'Access Expansion' },
-          description: {
-            ru: 'Переход между связанными сегментами и системами.',
-            en: 'Movement across connected segments and systems.',
-          },
-          mitreTags: ['T1021', 'T1090'],
-          activeNodes: ['core', 'identity'],
-        },
-        {
-          id: 'exfiltration',
-          title: { ru: 'Вывод данных', en: 'Exfiltration' },
-          description: {
-            ru: 'Отчет фиксирует путь атаки, затронутые узлы и технические признаки.',
-            en: 'The report captures attack path, affected nodes, and technical indicators.',
-          },
-          mitreTags: ['T1041', 'T1567'],
-          activeNodes: ['data', 'report'],
-        },
-      ],
+      map: {
+        ru: energyItMapRu,
+        en: energyItMapEn,
+      },
+      itLayer: {
+        report: energyItReport,
+        targets: energyItTargets,
+      },
+      steps: createKillchainSteps(energyItReport),
     },
   ],
 };

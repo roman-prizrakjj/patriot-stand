@@ -1,20 +1,35 @@
+import { useEffect } from 'react';
 import { BottomMenu } from '../components/BottomMenu';
 import { LanguageStinger } from '../components/LanguageStinger';
 import { scenarioConfig } from '../config/scenario';
+import { useStreamDeckBlockSync } from '../integrations/streamDeck/useStreamDeckSync';
 import { KillchainScreen } from '../screens/KillchainScreen';
 import { PresentationDeckScreen } from '../screens/PresentationDeckScreen';
 import { SlideScreen } from '../screens/SlideScreen';
 import { VideoScreen } from '../screens/VideoScreen';
+import { preloadItLayerMaps } from './preloadItLayerMaps';
 import { useScenarioEngine } from './useScenarioEngine';
 
 export function App() {
   const engine = useScenarioEngine(scenarioConfig);
   const { currentBlock, language } = engine;
 
+  useStreamDeckBlockSync(currentBlock, language);
+
+  useEffect(() => {
+    preloadItLayerMaps(scenarioConfig, language);
+  }, [language]);
+
+  const stageClassName = [
+    'stage',
+    currentBlock?.type === 'presentation' ? 'stage--presentation' : '',
+    currentBlock?.type === 'killchain' ? 'stage--it-layer' : '',
+  ].filter(Boolean).join(' ');
+
   return (
     <main className="app-shell">
       <section
-        className={`stage ${currentBlock?.type === 'presentation' ? 'stage--presentation' : ''}`}
+        className={stageClassName}
         aria-live="polite"
       >
         {currentBlock?.type === 'slide' && (
@@ -30,7 +45,17 @@ export function App() {
         )}
 
         {currentBlock?.type === 'killchain' && (
-          <KillchainScreen block={currentBlock} language={language} position={engine.position} />
+          <KillchainScreen
+            block={currentBlock}
+            language={language}
+            position={engine.position}
+            onStepSelect={(killchainStepIndex) => {
+              engine.goToPosition({
+                blockIndex: engine.position.blockIndex,
+                killchainStepIndex,
+              });
+            }}
+          />
         )}
       </section>
 

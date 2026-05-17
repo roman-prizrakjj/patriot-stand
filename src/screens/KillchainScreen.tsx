@@ -1,13 +1,40 @@
 import { getKillchainStep } from '../core/navigation';
 import type { KillchainBlock, Language, ScenarioPosition } from '../core/types';
+import { ItLayerScreen } from './ItLayerScreen';
 
 interface KillchainScreenProps {
   block: KillchainBlock;
   language: Language;
   position: ScenarioPosition;
+  onStepSelect: (stepIndex: number) => void;
 }
 
-export function KillchainScreen({ block, language, position }: KillchainScreenProps) {
+export function KillchainScreen({ block, language, position, onStepSelect }: KillchainScreenProps) {
+  if (block.map && block.itLayer) {
+    return (
+      <ItLayerScreen
+        block={block}
+        language={language}
+        position={position}
+        onStepSelect={onStepSelect}
+      />
+    );
+  }
+
+  if (block.map) {
+    return (
+      <article className="it-layer-screen" aria-label={block.title[language]}>
+        <img
+          key={`${block.id}-${language}`}
+          className="it-layer-map"
+          src={block.map[language]}
+          alt=""
+          draggable={false}
+        />
+      </article>
+    );
+  }
+
   const step = getKillchainStep(block, position);
 
   return (
