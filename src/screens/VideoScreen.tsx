@@ -3,9 +3,10 @@ import type { Language, VideoBlock } from '../core/types';
 interface VideoScreenProps {
   block: VideoBlock;
   language: Language;
+  onEnded: () => void;
 }
 
-export function VideoScreen({ block, language }: VideoScreenProps) {
+export function VideoScreen({ block, language, onEnded }: VideoScreenProps) {
   return (
     <article className="video-screen">
       <video
@@ -16,6 +17,7 @@ export function VideoScreen({ block, language }: VideoScreenProps) {
         preload="auto"
         poster={block.poster?.[language]}
         src={block.source[language]}
+        onEnded={onEnded}
       />
     </article>
   );

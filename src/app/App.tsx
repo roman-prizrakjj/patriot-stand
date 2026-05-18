@@ -42,7 +42,11 @@ export function App() {
         )}
 
         {currentBlock?.type === 'video' && (
-          <VideoScreen block={currentBlock} language={language} />
+          <VideoScreen
+            block={currentBlock}
+            language={language}
+            onEnded={engine.goNext}
+          />
         )}
 
         {currentBlock?.type === 'killchain' && (
