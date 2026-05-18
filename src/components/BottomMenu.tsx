@@ -6,6 +6,15 @@ import { triggerPtVisionStreamDeck } from '../integrations/streamDeck/useStreamD
 
 type ScenarioEngine = ReturnType<typeof useScenarioEngine>;
 
+const bottomMenuText = {
+  ru: {
+    page: 'Страница',
+  },
+  en: {
+    page: 'Page',
+  },
+};
+
 interface BottomMenuProps {
   config: ScenarioConfig;
   engine: ScenarioEngine;
@@ -61,7 +70,7 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
       aria-label="Scenario controls"
     >
       <div className="figma-menu-group figma-menu-group--pages">
-        <span className="figma-menu-label">Страница</span>
+        <span className="figma-menu-label">{bottomMenuText[language].page}</span>
         <button className="figma-menu-button" type="button" onClick={goPrevious} aria-label="Previous">
           <ChevronLeft size={18} strokeWidth={2.4} />
         </button>
