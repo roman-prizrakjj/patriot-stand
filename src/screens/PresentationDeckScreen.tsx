@@ -15,6 +15,7 @@ const counterDurationMs = 2200;
 const enableCoverIntroExperiment = true;
 const enableCommunityProductsHighlightExperiment = true;
 const enableEcosystemLinkPulseExperiment = true;
+const enableMarketPillHighlightExperiment = true;
 
 function easeOutQuad(progress: number) {
   return 1 - (1 - progress) * (1 - progress);
@@ -212,6 +213,7 @@ export function PresentationDeckScreen({ block, language }: PresentationDeckScre
         enableCoverIntroExperiment ? 'presentation-screen--cover-intro-v2' : '',
         enableCommunityProductsHighlightExperiment ? 'presentation-screen--community-products-highlight' : '',
         enableEcosystemLinkPulseExperiment ? 'presentation-screen--ecosystem-link-pulse' : '',
+        enableMarketPillHighlightExperiment ? 'presentation-screen--market-pill-highlight' : '',
       ].filter(Boolean).join(' ')}
       ref={rootRef}
     />
