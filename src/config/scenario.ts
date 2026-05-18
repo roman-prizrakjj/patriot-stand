@@ -4,10 +4,10 @@ import oilGasItReportJson from '../assets/it-layer/data/oil-gas-it-attack-steps.
 import oilGasItTargetsJson from '../assets/it-layer/data/oil-gas-it-targets.json';
 import type { ItLayerReport, ItLayerTargetsDataset, KillchainStep, ScenarioConfig } from '../core/types';
 
-const oilPosterRu = new URL('../../sorci/oilru.png', import.meta.url).href;
-const oilPosterEn = new URL('../../sorci/oilen.png', import.meta.url).href;
-const energyPosterRu = new URL('../../sorci/energyru.png', import.meta.url).href;
-const energyPosterEn = new URL('../../sorci/energyen.png', import.meta.url).href;
+const oilPosterRu = '/media/posters/risk-oil-ru.jpg';
+const oilPosterEn = '/media/posters/risk-oil-en.jpg';
+const energyPosterRu = '/media/posters/risk-intersec-ru.jpg';
+const energyPosterEn = '/media/posters/risk-intersec-en.jpg';
 const oilGasItMapRu = new URL('../assets/it-layer/maps/oil-gas-it-map-ru.png', import.meta.url).href;
 const oilGasItMapEn = new URL('../assets/it-layer/maps/oil-gas-it-map-en.png', import.meta.url).href;
 const energyItMapRu = new URL('../assets/it-layer/maps/energy-it-map-ru.png', import.meta.url).href;

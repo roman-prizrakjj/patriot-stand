@@ -1,3 +1,2 @@
-sorci/*.png filter=lfs diff=lfs merge=lfs -text
 public/media/*.mp4 filter=lfs diff=lfs merge=lfs -text
 public/media/*.webm filter=lfs diff=lfs merge=lfs -text
