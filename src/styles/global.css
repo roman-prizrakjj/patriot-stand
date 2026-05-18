@@ -883,7 +883,11 @@ button {
 }
 
 .it-layer-mitre-code {
-  color: #ff2d33;
+  color: #ff7378;
+  font-weight: 800;
+  text-shadow:
+    0 0 10px rgb(255 45 51 / 0.56),
+    0 0 18px rgb(255 45 51 / 0.28);
 }
 
 .it-layer-step-nav {
