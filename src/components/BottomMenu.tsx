@@ -23,8 +23,8 @@ interface BottomMenuProps {
 export function BottomMenu({ config, engine }: BottomMenuProps) {
   const {
     currentBlock,
-    goNext,
-    goPrevious,
+    goNextBlock,
+    goPreviousBlock,
     jumpToBlock,
     language,
     mode,
@@ -78,7 +78,7 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
     >
       <div className="figma-menu-group figma-menu-group--pages">
         <span className="figma-menu-label">{bottomMenuText[language].page}</span>
-        <button className="figma-menu-button" type="button" onClick={goPrevious} aria-label="Previous">
+        <button className="figma-menu-button" type="button" onClick={goPreviousBlock} aria-label="Previous">
           <ChevronLeft size={18} strokeWidth={2.4} />
         </button>
 
@@ -102,7 +102,7 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
           })}
         </div>
 
-        <button className="figma-menu-button" type="button" onClick={goNext} aria-label="Next">
+        <button className="figma-menu-button" type="button" onClick={goNextBlock} aria-label="Next">
           <ChevronRight size={18} strokeWidth={2.4} />
         </button>
       </div>

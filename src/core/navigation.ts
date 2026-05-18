@@ -48,6 +48,35 @@ export function getPreviousPosition(blocks: ScenarioBlock[], position: ScenarioP
   };
 }
 
+export function getNextBlockPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | null {
+  if (blocks.length === 0) {
+    return null;
+  }
+
+  if (position.blockIndex < blocks.length - 1) {
+    return {
+      blockIndex: position.blockIndex + 1,
+      killchainStepIndex: 0,
+    };
+  }
+
+  return {
+    blockIndex: 0,
+    killchainStepIndex: 0,
+  };
+}
+
+export function getPreviousBlockPosition(blocks: ScenarioBlock[], position: ScenarioPosition): ScenarioPosition | null {
+  if (blocks.length === 0 || position.blockIndex === 0) {
+    return null;
+  }
+
+  return {
+    blockIndex: position.blockIndex - 1,
+    killchainStepIndex: 0,
+  };
+}
+
 export function getLastStepIndex(block?: ScenarioBlock): number {
   return block?.type === 'killchain' ? block.steps.length - 1 : 0;
 }

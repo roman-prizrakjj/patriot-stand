@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getNextPosition, getPreviousPosition } from '../core/navigation';
+import {
+  getNextBlockPosition,
+  getNextPosition,
+  getPreviousBlockPosition,
+  getPreviousPosition,
+} from '../core/navigation';
 import type { Language, PlaybackMode, ScenarioConfig, ScenarioPosition } from '../core/types';
 
 const firstPosition: ScenarioPosition = {
@@ -37,6 +42,26 @@ export function useScenarioEngine(config: ScenarioConfig) {
 
   const goPrevious = useCallback(() => {
     const previousPosition = getPreviousPosition(config.blocks, position);
+
+    if (!previousPosition) {
+      return;
+    }
+
+    goToPosition(previousPosition);
+  }, [config.blocks, goToPosition, position]);
+
+  const goNextBlock = useCallback(() => {
+    const nextPosition = getNextBlockPosition(config.blocks, position);
+
+    if (!nextPosition) {
+      return;
+    }
+
+    goToPosition(nextPosition);
+  }, [config.blocks, goToPosition, position]);
+
+  const goPreviousBlock = useCallback(() => {
+    const previousPosition = getPreviousBlockPosition(config.blocks, position);
 
     if (!previousPosition) {
       return;
@@ -91,7 +116,9 @@ export function useScenarioEngine(config: ScenarioConfig) {
   return useMemo(() => ({
     currentBlock,
     goNext,
+    goNextBlock,
     goPrevious,
+    goPreviousBlock,
     goToPosition,
     goToStart,
     jumpToBlock,
@@ -103,7 +130,9 @@ export function useScenarioEngine(config: ScenarioConfig) {
   }), [
     currentBlock,
     goNext,
+    goNextBlock,
     goPrevious,
+    goPreviousBlock,
     goToPosition,
     goToStart,
     jumpToBlock,

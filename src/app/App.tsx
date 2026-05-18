@@ -81,11 +81,11 @@ export function App() {
     }
 
     if (deltaX < 0) {
-      engine.goNext();
+      engine.goNextBlock();
       return;
     }
 
-    engine.goPrevious();
+    engine.goPreviousBlock();
   }
 
   function handleStagePointerCancel(event: React.PointerEvent<HTMLElement>) {
