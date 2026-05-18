@@ -72,8 +72,7 @@ button {
   mask-image: linear-gradient(to bottom, transparent, black 18%, black 78%, transparent);
 }
 
-.eyebrow,
-.video-title p {
+.eyebrow {
   margin: 0 0 24px;
   color: #66d9d2;
   font-size: 28px;
@@ -81,8 +80,7 @@ button {
   text-transform: uppercase;
 }
 
-.content-copy h1,
-.video-title h1 {
+.content-copy h1 {
   margin: 0;
   font-size: 120px;
   line-height: 1;
@@ -959,14 +957,6 @@ button {
   line-height: 1.1;
 }
 
-.video-title {
-  position: absolute;
-  left: 180px;
-  bottom: 230px;
-  max-width: 1320px;
-  text-shadow: 0 24px 50px rgb(0 0 0 / 0.45);
-}
-
 .tag-row {
   display: flex;
   flex-wrap: wrap;
@@ -1421,8 +1411,7 @@ button {
     padding-right: 96px;
   }
 
-  .content-copy h1,
-  .video-title h1 {
+  .content-copy h1 {
     font-size: 92px;
   }
 }

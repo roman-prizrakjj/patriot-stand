@@ -17,10 +17,6 @@ export function VideoScreen({ block, language }: VideoScreenProps) {
         poster={block.poster?.[language]}
         src={block.source[language]}
       />
-      <div className="video-title">
-        <p>Risk</p>
-        <h1>{block.title[language]}</h1>
-      </div>
     </article>
   );
 }
