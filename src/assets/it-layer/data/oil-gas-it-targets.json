@@ -162,7 +162,7 @@
     },
     {
       "id": "attack-line-02",
-      "from": "target-0",
+      "fromStep": 1,
       "toStep": 2
     },
     {
