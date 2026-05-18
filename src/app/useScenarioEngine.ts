@@ -13,6 +13,7 @@ export function useScenarioEngine(config: ScenarioConfig) {
   const [position, setPosition] = useState<ScenarioPosition>(firstPosition);
   const [showLanguageStinger, setShowLanguageStinger] = useState(false);
   const stingerTimerRef = useRef<number | null>(null);
+  const stingerFrameRef = useRef<number | null>(null);
 
   const currentBlock = config.blocks[position.blockIndex];
 
@@ -50,23 +51,40 @@ export function useScenarioEngine(config: ScenarioConfig) {
 
   const switchLanguage = useCallback((nextLanguage: Language) => {
     setLanguage(nextLanguage);
-    setShowLanguageStinger(true);
 
     if (stingerTimerRef.current !== null) {
       window.clearTimeout(stingerTimerRef.current);
     }
 
-    stingerTimerRef.current = window.setTimeout(() => {
-      setShowLanguageStinger(false);
-      stingerTimerRef.current = null;
-    }, 1400);
+    if (stingerFrameRef.current !== null) {
+      window.cancelAnimationFrame(stingerFrameRef.current);
+    }
+
+    setShowLanguageStinger(false);
+
+    stingerFrameRef.current = window.requestAnimationFrame(() => {
+      setShowLanguageStinger(true);
+      stingerFrameRef.current = null;
+
+      stingerTimerRef.current = window.setTimeout(() => {
+        setShowLanguageStinger(false);
+        stingerTimerRef.current = null;
+      }, 1500);
+    });
   }, []);
 
   useEffect(() => {
     return () => {
+      if (stingerFrameRef.current !== null) {
+        window.cancelAnimationFrame(stingerFrameRef.current);
+      }
+
       if (stingerTimerRef.current !== null) {
         window.clearTimeout(stingerTimerRef.current);
       }
+
+      stingerFrameRef.current = null;
+      stingerTimerRef.current = null;
     };
   }, []);
 

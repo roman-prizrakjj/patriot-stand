@@ -99,6 +99,22 @@ export interface ItLayerTarget {
   y: number;
 }
 
+export interface ItLayerStepTarget {
+  stepNumber: number;
+  targetId: string;
+  label: string;
+  segment: string;
+  x: number;
+  y: number;
+}
+
+export interface ItLayerAttackEdge {
+  id?: string;
+  from?: string;
+  fromStep?: number;
+  toStep: number;
+}
+
 export interface ItLayerTargetsDataset {
   image: string;
   coordinateSpace: {
@@ -108,6 +124,9 @@ export interface ItLayerTargetsDataset {
     designHeight: number;
   };
   targets: ItLayerTarget[];
+  initialTarget?: ItLayerTarget;
+  stepTargets?: ItLayerStepTarget[];
+  attackEdges?: ItLayerAttackEdge[];
 }
 
 export interface ItLayerData {

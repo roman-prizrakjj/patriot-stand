@@ -15,25 +15,18 @@
       "y": 0.331418
     },
     {
+      "id": "target-605",
+      "label": "",
+      "segment": "tech",
+      "x": 0.521711,
+      "y": 0.24514
+    },
+    {
       "id": "target-608",
       "label": "",
       "segment": "servers",
       "x": 0.302043,
       "y": 0.299631
-    },
-    {
-      "id": "target-612",
-      "label": "",
-      "segment": "users",
-      "x": 0.327586,
-      "y": 0.329147
-    },
-    {
-      "id": "target-611",
-      "label": "",
-      "segment": "servers",
-      "x": 0.387612,
-      "y": 0.279197
     },
     {
       "id": "target-610",
@@ -43,11 +36,18 @@
       "y": 0.231517
     },
     {
-      "id": "target-632",
+      "id": "target-611",
       "label": "",
       "segment": "servers",
-      "x": 0.413793,
-      "y": 0.255357
+      "x": 0.387612,
+      "y": 0.279197
+    },
+    {
+      "id": "target-612",
+      "label": "",
+      "segment": "users",
+      "x": 0.327586,
+      "y": 0.329147
     },
     {
       "id": "target-628",
@@ -57,11 +57,11 @@
       "y": 0.196325
     },
     {
-      "id": "target-605",
+      "id": "target-632",
       "label": "",
-      "segment": "tech",
-      "x": 0.521711,
-      "y": 0.24514
+      "segment": "servers",
+      "x": 0.413793,
+      "y": 0.255357
     },
     {
       "id": "target-740",
@@ -76,6 +76,251 @@
       "segment": "tech",
       "x": 0.570881,
       "y": 0.198595
+    }
+  ],
+  "initialTarget": {
+    "id": "target-0",
+    "label": "Internet",
+    "segment": "internet",
+    "x": 0.314063,
+    "y": 0.533333
+  },
+  "stepTargets": [
+    {
+      "stepNumber": 1,
+      "targetId": "target-601",
+      "label": "Портал ЦДУ «Энерго»",
+      "segment": "perimeter",
+      "x": 0.292708,
+      "y": 0.346296
+    },
+    {
+      "stepNumber": 2,
+      "targetId": "target-601",
+      "label": "Портал ЦДУ «Энерго»",
+      "segment": "perimeter",
+      "x": 0.292708,
+      "y": 0.344444
+    },
+    {
+      "stepNumber": 3,
+      "targetId": "target-632",
+      "label": "Сервис сертификации использования возобновляемой энергии",
+      "segment": "servers",
+      "x": 0.470313,
+      "y": 0.259259
+    },
+    {
+      "stepNumber": 4,
+      "targetId": "target-632",
+      "label": "Сервис сертификации использования возобновляемой энергии",
+      "segment": "servers",
+      "x": 0.470833,
+      "y": 0.258333
+    },
+    {
+      "stepNumber": 5,
+      "targetId": "target-608",
+      "label": "Рабочие станции сотрудников ЦДУ «Энерго»",
+      "segment": "servers",
+      "x": 0.335938,
+      "y": 0.315741
+    },
+    {
+      "stepNumber": 6,
+      "targetId": "target-608",
+      "label": "Рабочие станции сотрудников ЦДУ «Энерго»",
+      "segment": "servers",
+      "x": 0.335938,
+      "y": 0.313889
+    },
+    {
+      "stepNumber": 7,
+      "targetId": "target-611",
+      "label": "Корпоративный парольный менеджер ЦДУ «Энерго»",
+      "segment": "servers",
+      "x": 0.4375,
+      "y": 0.288889
+    },
+    {
+      "stepNumber": 8,
+      "targetId": "target-611",
+      "label": "Корпоративный парольный менеджер ЦДУ «Энерго»",
+      "segment": "servers",
+      "x": 0.4375,
+      "y": 0.287037
+    },
+    {
+      "stepNumber": 9,
+      "targetId": "target-628",
+      "label": "Система управления электрической подстанцией №1",
+      "segment": "tech",
+      "x": 0.489583,
+      "y": 0.183333
+    },
+    {
+      "stepNumber": 10,
+      "targetId": "target-612",
+      "label": "Рабочая станция оператора ЦДУ «Энерго»",
+      "segment": "users",
+      "x": 0.366146,
+      "y": 0.342593
+    },
+    {
+      "stepNumber": 11,
+      "targetId": "target-612",
+      "label": "Рабочая станция оператора ЦДУ «Энерго»",
+      "segment": "users",
+      "x": 0.366667,
+      "y": 0.341667
+    },
+    {
+      "stepNumber": 12,
+      "targetId": "target-610",
+      "label": "Прокси-сервер ЦДУ «Энерго»",
+      "segment": "servers",
+      "x": 0.440625,
+      "y": 0.225926
+    },
+    {
+      "stepNumber": 13,
+      "targetId": "target-740",
+      "label": "Корпоративный VPN-сервер подстанции №2",
+      "segment": "tech",
+      "x": 0.629167,
+      "y": 0.214815
+    },
+    {
+      "stepNumber": 14,
+      "targetId": "target-605",
+      "label": "Рабочие станции операторов электрической подстанции №2",
+      "segment": "tech",
+      "x": 0.598437,
+      "y": 0.240741
+    },
+    {
+      "stepNumber": 15,
+      "targetId": "target-605",
+      "label": "Рабочие станции операторов электрической подстанции №2",
+      "segment": "tech",
+      "x": 0.598958,
+      "y": 0.240741
+    },
+    {
+      "stepNumber": 16,
+      "targetId": "target-605",
+      "label": "Рабочие станции операторов электрической подстанции №2",
+      "segment": "tech",
+      "x": 0.598958,
+      "y": 0.238889
+    },
+    {
+      "stepNumber": 17,
+      "targetId": "target-741",
+      "label": "Система управления электрической подстанцией №2",
+      "segment": "tech",
+      "x": 0.657292,
+      "y": 0.189815
+    },
+    {
+      "stepNumber": 18,
+      "targetId": "target-741",
+      "label": "Система управления электрической подстанцией №2",
+      "segment": "tech",
+      "x": 0.657813,
+      "y": 0.187963
+    }
+  ],
+  "attackEdges": [
+    {
+      "id": "attack-line-01",
+      "from": "target-0",
+      "toStep": 1
+    },
+    {
+      "id": "attack-line-02",
+      "fromStep": 1,
+      "toStep": 2
+    },
+    {
+      "id": "attack-line-03",
+      "fromStep": 2,
+      "toStep": 3
+    },
+    {
+      "id": "attack-line-04",
+      "fromStep": 3,
+      "toStep": 4
+    },
+    {
+      "id": "attack-line-05",
+      "fromStep": 4,
+      "toStep": 5
+    },
+    {
+      "id": "attack-line-06",
+      "fromStep": 5,
+      "toStep": 6
+    },
+    {
+      "id": "attack-line-07",
+      "fromStep": 6,
+      "toStep": 7
+    },
+    {
+      "id": "attack-line-08",
+      "fromStep": 7,
+      "toStep": 8
+    },
+    {
+      "id": "attack-line-09",
+      "fromStep": 8,
+      "toStep": 9
+    },
+    {
+      "id": "attack-line-10",
+      "fromStep": 9,
+      "toStep": 10
+    },
+    {
+      "id": "attack-line-11",
+      "fromStep": 10,
+      "toStep": 11
+    },
+    {
+      "id": "attack-line-12",
+      "fromStep": 11,
+      "toStep": 12
+    },
+    {
+      "id": "attack-line-13",
+      "fromStep": 12,
+      "toStep": 13
+    },
+    {
+      "id": "attack-line-14",
+      "fromStep": 13,
+      "toStep": 14
+    },
+    {
+      "id": "attack-line-15",
+      "fromStep": 14,
+      "toStep": 15
+    },
+    {
+      "id": "attack-line-16",
+      "fromStep": 15,
+      "toStep": 16
+    },
+    {
+      "id": "attack-line-17",
+      "fromStep": 16,
+      "toStep": 17
+    },
+    {
+      "id": "attack-line-18",
+      "fromStep": 17,
+      "toStep": 18
     }
   ]
 }

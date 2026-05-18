@@ -23,6 +23,7 @@ export function App() {
   const stageClassName = [
     'stage',
     currentBlock?.type === 'presentation' ? 'stage--presentation' : '',
+    currentBlock?.type === 'video' ? 'stage--video' : '',
     currentBlock?.type === 'killchain' ? 'stage--it-layer' : '',
   ].filter(Boolean).join(' ');
 

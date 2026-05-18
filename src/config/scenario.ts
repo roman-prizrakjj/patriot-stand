@@ -91,8 +91,8 @@ export const scenarioConfig: ScenarioConfig = {
       durationMs: 16000,
       title: { ru: 'Риск в нефтяной отрасли', en: 'Oil Industry Risk' },
       source: {
-        ru: '/media/risk-oil-ru.mp4',
-        en: '/media/risk-oil-en.mp4',
+        ru: '/media/risk-oil-ru.webm',
+        en: '/media/risk-oil-en.webm',
       },
       poster: {
         ru: oilPosterRu,

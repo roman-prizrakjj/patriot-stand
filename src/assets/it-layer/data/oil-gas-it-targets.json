@@ -22,11 +22,18 @@
       "y": 0.337094
     },
     {
-      "id": "target-685",
+      "id": "target-667",
       "label": "",
       "segment": "users",
-      "x": 0.432312,
-      "y": 0.41656
+      "x": 0.653257,
+      "y": 0.24741
+    },
+    {
+      "id": "target-674",
+      "label": "",
+      "segment": "tech",
+      "x": 0.609195,
+      "y": 0.347311
     },
     {
       "id": "target-676",
@@ -43,18 +50,165 @@
       "y": 0.3405
     },
     {
-      "id": "target-667",
+      "id": "target-685",
       "label": "",
       "segment": "users",
-      "x": 0.653257,
-      "y": 0.24741
+      "x": 0.432312,
+      "y": 0.41656
+    }
+  ],
+  "initialTarget": {
+    "id": "target-0",
+    "label": "Internet",
+    "segment": "internet",
+    "x": 0.309896,
+    "y": 0.507407
+  },
+  "stepTargets": [
+    {
+      "stepNumber": 1,
+      "targetId": "target-638",
+      "label": "Почтовый сервер",
+      "segment": "servers",
+      "x": 0.334375,
+      "y": 0.291667
     },
     {
-      "id": "target-674",
-      "label": "",
+      "stepNumber": 2,
+      "targetId": "target-685",
+      "label": "Рабочие станции сотрудников",
+      "segment": "users",
+      "x": 0.490104,
+      "y": 0.447222
+    },
+    {
+      "stepNumber": 3,
+      "targetId": "target-676",
+      "label": "Корпоративный сервис для совместной работы",
+      "segment": "servers",
+      "x": 0.49375,
+      "y": 0.323148
+    },
+    {
+      "stepNumber": 4,
+      "targetId": "target-676",
+      "label": "Корпоративный сервис для совместной работы",
+      "segment": "servers",
+      "x": 0.494271,
+      "y": 0.324074
+    },
+    {
+      "stepNumber": 5,
+      "targetId": "target-643",
+      "label": "Рабочая станция инженера",
+      "segment": "users",
+      "x": 0.394792,
+      "y": 0.355556
+    },
+    {
+      "stepNumber": 6,
+      "targetId": "target-679",
+      "label": "Платформа для проведения инструктажа по технике безопасности",
+      "segment": "servers",
+      "x": 0.526563,
+      "y": 0.360185
+    },
+    {
+      "stepNumber": 7,
+      "targetId": "target-679",
+      "label": "Платформа для проведения инструктажа по технике безопасности",
+      "segment": "servers",
+      "x": 0.527083,
+      "y": 0.357407
+    },
+    {
+      "stepNumber": 8,
+      "targetId": "target-679",
+      "label": "Платформа для проведения инструктажа по технике безопасности",
+      "segment": "servers",
+      "x": 0.526563,
+      "y": 0.357407
+    },
+    {
+      "stepNumber": 9,
+      "targetId": "target-667",
+      "label": "Рабочие станции операторов АСУ ТП нефтяного сегмента",
+      "segment": "users",
+      "x": 0.752604,
+      "y": 0.249074
+    },
+    {
+      "stepNumber": 10,
+      "targetId": "target-674",
+      "label": "Система управления гидрокрекингом",
       "segment": "tech",
-      "x": 0.609195,
-      "y": 0.347311
+      "x": 0.701562,
+      "y": 0.368519
+    },
+    {
+      "stepNumber": 11,
+      "targetId": "target-674",
+      "label": "Система управления гидрокрекингом",
+      "segment": "tech",
+      "x": 0.700521,
+      "y": 0.366667
+    }
+  ],
+  "attackEdges": [
+    {
+      "id": "attack-line-01",
+      "from": "target-0",
+      "toStep": 1
+    },
+    {
+      "id": "attack-line-02",
+      "from": "target-0",
+      "toStep": 2
+    },
+    {
+      "id": "attack-line-03",
+      "fromStep": 2,
+      "toStep": 3
+    },
+    {
+      "id": "attack-line-04",
+      "fromStep": 3,
+      "toStep": 4
+    },
+    {
+      "id": "attack-line-05",
+      "fromStep": 4,
+      "toStep": 5
+    },
+    {
+      "id": "attack-line-06",
+      "fromStep": 5,
+      "toStep": 6
+    },
+    {
+      "id": "attack-line-07",
+      "fromStep": 6,
+      "toStep": 7
+    },
+    {
+      "id": "attack-line-08",
+      "fromStep": 7,
+      "toStep": 8
+    },
+    {
+      "id": "attack-line-09",
+      "fromStep": 8,
+      "toStep": 9
+    },
+    {
+      "id": "attack-line-10",
+      "fromStep": 9,
+      "toStep": 10
+    },
+    {
+      "id": "attack-line-11",
+      "fromStep": 10,
+      "toStep": 11
     }
   ]
 }
