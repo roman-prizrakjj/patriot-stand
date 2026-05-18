@@ -1861,6 +1861,165 @@
       animation-name: scaleFadeIn;
     }
 
+    /* Cover intro experiment. Disable by setting enableCoverIntroExperiment=false in PresentationDeckScreen.tsx. */
+    @keyframes coverIntroV2Map {
+      0% {
+        opacity: 0;
+        filter:
+          brightness(.36)
+          contrast(.9)
+          saturate(.82)
+          blur(8px)
+          drop-shadow(0 0 0 rgba(86,244,255,0))
+          drop-shadow(0 0 0 rgba(244,45,45,0));
+        transform: scale(1.018);
+      }
+
+      34% {
+        opacity: .92;
+        filter:
+          brightness(.94)
+          contrast(1.15)
+          saturate(1.12)
+          blur(.8px)
+          drop-shadow(0 0 14px rgba(86,244,255,.12))
+          drop-shadow(0 0 16px rgba(244,45,45,.04));
+        transform: scale(1.006);
+      }
+
+      100% {
+        opacity: .98;
+        filter:
+          brightness(.86)
+          contrast(1.18)
+          saturate(1.16)
+          blur(.8px)
+          drop-shadow(0 0 22px rgba(86,244,255,.24))
+          drop-shadow(0 0 28px rgba(244,45,45,.12));
+        transform: scale(1);
+      }
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover .pdeck-cover-map {
+      opacity: .98;
+      filter:
+        brightness(.86)
+        contrast(1.18)
+        saturate(1.16)
+        blur(.8px)
+        drop-shadow(0 0 22px rgba(86,244,255,.24))
+        drop-shadow(0 0 28px rgba(244,45,45,.12));
+      transform: scale(1);
+    }
+
+    @keyframes coverIntroV2Tint {
+      0% {
+        opacity: 0;
+        filter: brightness(.72);
+      }
+
+      100% {
+        opacity: 1;
+        filter: brightness(1);
+      }
+    }
+
+    @keyframes coverIntroV2Title {
+      0% {
+        opacity: 0;
+        transform: translateY(34px) scale(.965);
+        filter: blur(10px);
+      }
+
+      62% {
+        opacity: 1;
+        transform: translateY(0) scale(1.012);
+        filter: blur(0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes coverIntroV2Fade {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes coverIntroV2Metric {
+      0% {
+        opacity: 0;
+        transform: translateY(38px) scale(.72);
+        filter: blur(8px);
+      }
+
+      68% {
+        opacity: 1;
+        transform: translateY(0) scale(1.055);
+        filter: blur(0);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+      }
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-map {
+      animation: coverIntroV2Map 2600ms cubic-bezier(.18, .82, .2, 1) both;
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-tint {
+      animation: coverIntroV2Tint 1800ms ease-out both;
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-header .pdeck-anim,
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-eyebrow {
+      animation: coverIntroV2Fade 1150ms cubic-bezier(.2, .78, .22, 1) 520ms both;
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-title {
+      animation: coverIntroV2Title 1700ms cubic-bezier(.18, .82, .18, 1) 720ms both;
+      text-shadow:
+        0 0 28px rgba(255,255,255,.16),
+        0 0 62px rgba(244,45,45,.18),
+        0 22px 80px rgba(0,0,0,.46);
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-copy {
+      animation: coverIntroV2Fade 1350ms cubic-bezier(.2, .78, .22, 1) 1750ms both;
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-stats .pdeck-metric {
+      animation: coverIntroV2Metric 1250ms cubic-bezier(.18, .82, .18, 1) both;
+      transform-origin: left top;
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-stats .pdeck-metric:nth-child(1) {
+      animation-delay: 2100ms;
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-stats .pdeck-metric:nth-child(2) {
+      animation-delay: 2300ms;
+    }
+
+    .presentation-screen--cover-intro-v2 .pdeck-cover.pdeck-is-entering .pdeck-cover-stats .pdeck-metric:nth-child(3) {
+      animation-delay: 2500ms;
+    }
+
     @keyframes coverLeaveUp {
       from { opacity: 1; transform: translateY(0); }
       to { opacity: 0; transform: translateY(-190px); }
@@ -1984,6 +2143,97 @@
 
     .pdeck-community.pdeck-is-entering .pdeck-radar-stat {
       animation: slideReveal 1100ms var(--ease) 900ms both;
+    }
+
+    /* Community product highlight experiment. Disable by setting enableCommunityProductsHighlightExperiment=false in PresentationDeckScreen.tsx. */
+    @keyframes communityProductSpotlight {
+      0% {
+        opacity: 0;
+        transform: translateY(54px) scale(.86);
+        filter: blur(9px) brightness(.72);
+      }
+
+      58% {
+        opacity: 1;
+        transform: translateY(0) scale(1.018);
+        filter: blur(0) brightness(1.22);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0) brightness(1);
+      }
+    }
+
+    @keyframes communityProductHalo {
+      0% {
+        opacity: 0;
+        transform: scale(.98);
+      }
+
+      38% {
+        opacity: .9;
+        transform: scale(1);
+      }
+
+      100% {
+        opacity: .44;
+        transform: scale(1);
+      }
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community .pdeck-product-stat {
+      position: relative;
+      isolation: isolate;
+      transform-origin: left center;
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community .pdeck-product-stat::before {
+      content: "";
+      position: absolute;
+      inset: -24px -26px -24px;
+      z-index: -1;
+      border: 1.7px solid rgba(244,45,45,.66);
+      border-radius: 24px;
+      background:
+        linear-gradient(110deg, rgba(244,45,45,.24), rgba(244,45,45,.08) 46%, rgba(255,255,255,.045)),
+        rgba(12,12,18,.34);
+      box-shadow:
+        inset 0 0 34px rgba(255,255,255,.07),
+        0 0 38px rgba(244,45,45,.28),
+        0 0 92px rgba(244,45,45,.16);
+      opacity: 0;
+      transform: scale(.98);
+      transition: opacity 260ms ease, transform 260ms ease;
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering .pdeck-product-stat {
+      animation: communityProductSpotlight 1450ms cubic-bezier(.18, .82, .18, 1) both;
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering .pdeck-product-stat::before {
+      animation: communityProductHalo 1700ms cubic-bezier(.18, .82, .18, 1) both;
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering [data-layer="community.product.hackbase"],
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering [data-layer="community.product.hackbase"]::before {
+      animation-delay: 1080ms;
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering [data-layer="community.product.battle"],
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering [data-layer="community.product.battle"]::before {
+      animation-delay: 1360ms;
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering [data-layer="community.product.bounty"],
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-entering [data-layer="community.product.bounty"]::before {
+      animation-delay: 1640ms;
+    }
+
+    .presentation-screen--community-products-highlight .pdeck-community.pdeck-is-active:not(.pdeck-is-entering) .pdeck-product-stat::before {
+      opacity: .28;
+      transform: scale(1);
     }
 
     .pdeck-community.pdeck-is-leaving .pdeck-radar {

@@ -12,6 +12,8 @@ interface PresentationDeckScreenProps {
 const slideTransitionMs = 3800;
 const counterHoldMs = 1300;
 const counterDurationMs = 2200;
+const enableCoverIntroExperiment = true;
+const enableCommunityProductsHighlightExperiment = true;
 
 function easeOutQuad(progress: number) {
   return 1 - (1 - progress) * (1 - progress);
@@ -204,7 +206,11 @@ export function PresentationDeckScreen({ block, language }: PresentationDeckScre
 
   return (
     <div
-      className="presentation-screen"
+      className={[
+        'presentation-screen',
+        enableCoverIntroExperiment ? 'presentation-screen--cover-intro-v2' : '',
+        enableCommunityProductsHighlightExperiment ? 'presentation-screen--community-products-highlight' : '',
+      ].filter(Boolean).join(' ')}
       ref={rootRef}
     />
   );
