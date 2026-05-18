@@ -17,6 +17,8 @@ export function VideoScreen({ block, language, onEnded }: VideoScreenProps) {
         preload="auto"
         poster={block.poster?.[language]}
         src={block.source[language]}
+        draggable={false}
+        onDragStart={(event) => event.preventDefault()}
         onEnded={onEnded}
       />
     </article>

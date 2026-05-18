@@ -30,6 +30,7 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
     mode,
     switchLanguage,
   } = engine;
+  const isHidden = currentBlock?.type === 'video';
 
   async function launchPtVision() {
     void triggerPtVisionStreamDeck(language);
@@ -66,8 +67,14 @@ export function BottomMenu({ config, engine }: BottomMenuProps) {
 
   return (
     <nav
-      className={`bottom-menu bottom-menu--full bottom-menu--${mode}`}
+      className={[
+        'bottom-menu',
+        'bottom-menu--full',
+        `bottom-menu--${mode}`,
+        isHidden ? 'bottom-menu--hidden' : '',
+      ].filter(Boolean).join(' ')}
       aria-label="Scenario controls"
+      aria-hidden={isHidden}
     >
       <div className="figma-menu-group figma-menu-group--pages">
         <span className="figma-menu-label">{bottomMenuText[language].page}</span>

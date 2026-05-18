@@ -23,6 +23,12 @@ button {
   font: inherit;
 }
 
+img,
+video {
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
 .app-shell {
   position: relative;
   width: 100vw;
@@ -39,6 +45,7 @@ button {
   width: 100%;
   height: 100%;
   padding-bottom: 164px;
+  touch-action: none;
 }
 
 .stage--presentation {
@@ -1024,6 +1031,11 @@ button {
   position: fixed;
   z-index: 1000;
   color: #ffffff;
+  opacity: 1;
+  pointer-events: auto;
+  transition:
+    opacity 520ms ease,
+    filter 520ms ease;
 }
 
 .bottom-menu--full {
@@ -1037,6 +1049,18 @@ button {
   transform: scale(var(--figma-menu-scale));
   transform-origin: bottom right;
   animation: figma-menu-appear 360ms cubic-bezier(.22, 1, .36, 1) both;
+  transition:
+    opacity 520ms ease,
+    filter 520ms ease,
+    transform 620ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.bottom-menu--hidden {
+  animation: none;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(96px) scale(var(--figma-menu-scale));
+  filter: blur(8px);
 }
 
 .figma-menu-group {

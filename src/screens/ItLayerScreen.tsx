@@ -973,6 +973,7 @@ export function ItLayerScreen({ block, language, position, onStepSelect }: ItLay
         src={map[language]}
         alt=""
         draggable={false}
+        onDragStart={(event) => event.preventDefault()}
       />
       <div className="it-layer-vignette" aria-hidden="true" />
 
